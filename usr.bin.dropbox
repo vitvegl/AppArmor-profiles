@@ -1,0 +1,112 @@
+#include <tunables/global>
+
+/usr/bin/dropbox {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/dbus>
+  #include <abstractions/dbus-session>
+  #include <abstractions/gnome>
+  #include <abstractions/nameservice>
+  #include <abstractions/python>
+
+  # Allow network access
+  network inet stream,
+
+  /proc/*/cmdline r,
+
+  /usr/bin/python2.[4567] ix,
+  /usr/include/python2.[4567]/pyconfig.h r,
+
+  # dropbox binary
+  /usr/bin/dropbox r,
+
+  /etc/mtab r,
+  /etc/default/apport r,
+  /etc/apt/apt.conf.d* r,
+
+  /bin/cat ixr,
+  /bin/readlink ixr,
+  /bin/dash ixr,
+  /bin/mount ixr,
+  /bin/uname ixr,
+  # for filestatus -l
+  /bin/stty ixr,
+
+  /usr/bin/dirname ixr,
+  /usr/bin/gcc-* ixr,
+  # reinstall languages
+  /usr/bin/gksu ixr,
+  /usr/bin/gconftool-2 ixr,
+  /usr/bin/ldd ixr,
+  /usr/bin/objdump ixr,
+  /usr/sbin/uuidd ixr,
+
+  /sbin/ldconfig* ixr,
+
+  capability mknod,
+  
+  /var/lib/libuuid/* rwl,
+
+  # Dropbox's own folders
+  owner @{HOME}/.dropbox-dist** rwixk,
+  owner @{HOME}/.dropbox** rwk,
+  owner @{HOME}/Dropbox** rwk,
+  # Only grants straight access to $HOME
+  owner @{HOME} r,
+
+  # Dropbox autostart
+  # NOTE: Setting autostart to NO will NOT work at the moment
+  # because Dropbox cannot unlink (aka remove) the file.  I
+  # have not found a way how to specify this here!
+  owner @{HOME}/.config/autostart/dropbox.desktop w,
+
+  #########################################################
+  # following rules copied from abstractions/private-files
+  #
+  # It's not possible to include the file as it denies
+  # access to .config/autostart entirely while dropbox
+  # needs access to this directory
+  #########################################################
+
+  # Deny and log access to sensitive locations
+  audit deny @{HOME}/Documents mrwkl,
+
+  # special attention to (potentially) executable files
+  audit deny @{HOME}/bin/** wl,
+  audit deny @{HOME}/.config/autostart/** wl,
+  audit deny @{HOME}/.kde/Autostart/** wl,
+
+ # don't allow reading/updating of run control files
+  deny @{HOME}/.*rc mrk,
+  audit deny @{HOME}/.*rc wl,
+
+  # bash
+  deny @{HOME}/.bash* mrk,
+  audit deny @{HOME}/.bash* wl,
+  deny @{HOME}/.inputrc mrk,
+  audit deny @{HOME}/.inputrc wl,
+
+  # sh/dash/csh/tcsh/pdksh/zsh
+  deny @{HOME}/.{,z}profile* mrk,
+  audit deny @{HOME}/.{,z}profile* wl,
+  deny @{HOME}/.{,z}log{in,out} mrk,
+  audit deny @{HOME}/.{,z}log{in,out} wl,
+
+  deny @{HOME}/.zshenv mrk,
+  audit deny @{HOME}/.zshenv wl,
+
+  deny @{HOME}/{[a-c],[A-C]}*/{,**} rwklmx,
+  deny @{HOME}/{[e-z],[E-Z]}*/{,**} rwklmx,
+  deny @{HOME}/.mozilla/{,**} rwklmx,
+  deny @{HOME}/.ssh/{,**} rwklmx,
+  deny /tmp/*.deb rwklmx,
+  deny /tmp/ssh*/{,**} rwklmx,
+  deny /tmp/systemd-private*/{,**} rwklmx,
+  deny /tmp/tmux*{,/} rwklmx,
+
+  owner @{HOME}/.dropbox-dist{,/} rklm,
+  owner @{HOME}/.dropbox-dist/{,**} rklmix,
+  owner @{HOME}/Dropbox rw,
+
+}
+
