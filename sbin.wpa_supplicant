@@ -1,0 +1,28 @@
+#include <tunables/global>
+#include <abstractions/base>
+#include <abstractions/dbus>
+
+/sbin/wpa_supplicant {
+
+capability net_admin,
+capability net_raw,
+network packet dgram,
+network inet dgram,
+
+deny capability setuid,
+deny capability setgid,
+deny capability linux_immutable,
+
+/dev/rfkill r,
+
+owner @{PROC}/[0-9]*/net/psched r,
+
+/sys/devices/pci[0-9]*/**/ieee80211/*/name r,
+/run/wpa_supplicant/ rw,
+/run/wpa_supplicant/* rw,
+/run/sendsigs.omit.d/wpasupplicant.pid rw,
+
+deny @{HOME}{,/} rwklmx,
+deny @{HOME}/** rwklmx,
+
+}
