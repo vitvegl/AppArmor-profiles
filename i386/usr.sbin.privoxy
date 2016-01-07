@@ -1,13 +1,13 @@
-	/usr/sbin/privoxy {
+/usr/sbin/privoxy {
 
-	network inet stream,
-	network inet6 stream,
-	network inet6 dgram,
-	network inet dgram,
-	network netlink raw,
+ network inet stream,
+ network inet6 stream,
+ network inet6 dgram,
+ network inet dgram,
+ network netlink raw,
 
-	capability setuid,
-	capability setgid,
+ capability setuid,
+ capability setgid,
 
 /usr/sbin/privoxy mr,
 
