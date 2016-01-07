@@ -1,7 +1,7 @@
-	/usr/bin/atril {
+/usr/bin/atril {
 
-	deny network,
-	deny capability,
+ deny network,
+ deny capability,
 
 / r,
 
@@ -234,10 +234,10 @@
 
 /var/cache/fontconfig/{,**} r,
 
-/home/*/ r,
+owner /home/*/ r,
 
-/home/*/.config/gtk-2.0/{,**} r,
+owner /home/*/.config/gtk-2.0/{,**} r,
 
-/home/*/Books/{,**} r,
+owner /home/*/Books/{,**} r,
 
 }
