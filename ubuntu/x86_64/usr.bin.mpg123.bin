@@ -1,5 +1,8 @@
 /usr/bin/mpg123.bin {
 
+deny network,
+deny capability,
+
 /etc/ld.so.cache r,
 /etc/machine-id r,
 
