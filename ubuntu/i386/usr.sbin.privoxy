@@ -1,0 +1,81 @@
+/usr/sbin/privoxy {
+
+ network inet stream,
+ network inet6 stream,
+ network inet6 dgram,
+ network inet dgram,
+ network netlink raw,
+
+ capability setuid,
+ capability setgid,
+
+ unix,
+
+/usr/sbin/privoxy mr,
+
+signal (receive) peer=unconfined,
+signal (send) peer=unconfined,
+
+/lib/i386-linux-gnu/libc.so.6 r,
+/lib/i386-linux-gnu/libc-2.21.so rm,
+
+/lib/i386-linux-gnu/libpthread.so r,
+/lib/i386-linux-gnu/libpthread-2.21.so rm,
+
+/lib/i386-linux-gnu/libz.so.1 r,
+/lib/i386-linux-gnu/libz.so.1.2.8 mr,
+
+/lib/i386-linux-gnu/libnss_files.so.2 r,
+/lib/i386-linux-gnu/libnss_files-2.21.so mr,
+
+/lib/i386-linux-gnu/libpcre.so.3 r,
+/lib/i386-linux-gnu/libpcre.so.3.13.1 mr,
+
+/usr/lib/i386-linux-gnu/libpcreposix.so.3 r,
+/usr/lib/i386-linux-gnu/libpcreposix.so.3.13.1 mr,
+
+/lib/i386-linux-gnu/libnss_compat-2.21.so rm,
+
+/lib/i386-linux-gnu/libnsl.so.1 r,
+/lib/i386-linux-gnu/libnsl-2.21.so rm,
+
+/lib/i386-linux-gnu/libnss_mdns4_minimal.so.2 mr,
+
+/lib/i386-linux-gnu/libresolv.so.2 r,
+/lib/i386-linux-gnu/libresolv-2.21.so rm,
+
+/lib/i386-linux-gnu/libnss_nis.so.2 r,
+/lib/i386-linux-gnu/libnss_dns-2.21.so rm,
+
+/proc/cpuinfo r,
+/proc/*/net/route r,
+/proc/sys/kernel/ngroups_max r,
+/proc/sys/vm/overcommit_memory r,
+
+/dev/null rw,
+
+/etc/ld.so.cache r,
+
+/etc/hosts r,
+/etc/host.conf r,
+/etc/gai.conf r,
+/etc/group r,
+/etc/localtime r,
+/etc/nsswitch.conf r,
+/etc/passwd r,
+/etc/services r,
+/etc/resolv.conf r,
+/etc/privoxy{,/} r,
+/etc/privoxy/config r,
+/etc/privoxy/* r,
+/etc/privoxy/** r,
+
+deny /home{,/} rwklmx,
+deny /home/** rwklmx,
+deny /run{,/} rwklmx,
+deny /run/*/** rwklmx,
+/run/privoxy.pid rw,
+
+/var/log/privoxy/logfile w,
+
+}
