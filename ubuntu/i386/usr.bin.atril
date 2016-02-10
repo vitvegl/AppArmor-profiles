@@ -1,4 +1,4 @@
-	/usr/bin/atril {
+  /usr/bin/atril {
 
   deny network inet,
   deny network ax25,
@@ -26,7 +26,7 @@
   deny network udp,
   deny network icmp,
   deny network netlink,
-	deny capability,
+  deny capability,
 
   /dev/urandom r,
 
