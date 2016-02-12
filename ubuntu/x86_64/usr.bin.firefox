@@ -4,6 +4,9 @@ dbus,
 network,
 deny capability,
 
+signal (send) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
+signal (receive) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
+
 /proc/{,**} r,
 
 /sys/devices/{,**} r,
