@@ -80,8 +80,6 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/share/mate/{,**} r,
 /usr/share/mozilla/{,**} r,
 
-owner /run/user/*/pulse{,*} rw,
-
 /etc/locale.alias r,
 
 /usr/lib/firefox/{,**} r,
