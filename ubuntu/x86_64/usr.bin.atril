@@ -15,8 +15,8 @@ deny capability,
 /usr/lib/x86_64-linux-gnu/libwebkitgtk-1.0.so.0 r,
 /usr/lib/x86_64-linux-gnu/libwebkitgtk-1.0.so.0.22.15 rm,
 
-/usr/lib/x86_64-linux-gnu/libicuuc.so.55 r,
-/usr/lib/x86_64-linux-gnu/libicuuc.so.55.1 rm,
+/usr/lib/x86_64-linux-gnu/libicuuc.so.52 r,
+/usr/lib/x86_64-linux-gnu/libicuuc.so.52.1 rm,
 
 /usr/lib/x86_64-linux-gnu/libstartup-notification-1.so.0 r,
 /usr/lib/x86_64-linux-gnu/libstartup-notification-1.so.0.0.0 rm,
@@ -31,7 +31,7 @@ deny capability,
 /usr/lib/x86_64-linux-gnu/libenchant.so.1.6.0 rm,
 
 /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0 r,
-/usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.10000.1 rm,
+/usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.937.0 rm,
 
 /usr/lib/x86_64-linux-gnu/libharfbuzz-icu.so.0 r,
 /usr/lib/x86_64-linux-gnu/libharfbuzz-icu.so.0.10000.1 rm,
@@ -86,8 +86,8 @@ deny capability,
 /usr/lib/x86_64-linux-gnu/libXt.so.6 r,
 /usr/lib/x86_64-linux-gnu/libXt.so.6.0.0 rm,
 
-/usr/lib/x86_64-linux-gnu/libicudata.so.55 r,
-/usr/lib/x86_64-linux-gnu/libicudata.so.55.1 rm,
+/usr/lib/x86_64-linux-gnu/libicudata.so.52 r,
+/usr/lib/x86_64-linux-gnu/libicudata.so.52.1 rm,
 
 /usr/lib/x86_64-linux-gnu/libxcb-util.so.1 r,
 /usr/lib/x86_64-linux-gnu/libxcb-util.so.1.0.0 rm,
@@ -182,7 +182,7 @@ deny capability,
 /usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.so rm,
 
 /usr/lib/x86_64-linux-gnu/librsvg-2.so.2 r,
-/usr/lib/x86_64-linux-gnu/librsvg-2.so.2.40.10 rm,
+/usr/lib/x86_64-linux-gnu/librsvg-2.so.2.40.9 rm,
 
 /usr/lib/x86_64-linux-gnu/libcroco-0.6.so.3 r,
 /usr/lib/x86_64-linux-gnu/libcroco-0.6.so.3.0.1 rm,
@@ -285,38 +285,38 @@ dbus (send)
 /usr/lib/x86_64-linux-gnu/libICE.so.6 r,
 /usr/lib/x86_64-linux-gnu/libICE.so.6.0.3 mr,
 
-/usr/lib/x86_64-linux-gnu/libatrildocument.so.3 r,
-/usr/lib/x86_64-linux-gnu/libatrildocument.so.3.0.0 mr,
+/usr/lib/libatrildocument.so.3 r,
+/usr/lib/libatrildocument.so.3.0.0 mr,
 
-/usr/lib/x86_64-linux-gnu/libatrilview.so.3 r,
-/usr/lib/x86_64-linux-gnu/libatrilview.so.3.0.0 mr,
+/usr/lib/libatrilview.so.3 r,
+/usr/lib/libatrilview.so.3.0.0 mr,
 
 /usr/lib/x86_64-linux-gnu/libgailutil.so.18 r,
 /usr/lib/x86_64-linux-gnu/libgailutil.so.18.0.1 mr,
 
 /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.4600.1 mr,
+/usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.4400.1 mr,
 
 /usr/lib/x86_64-linux-gnu/libxml2.so.2 r,
 /usr/lib/x86_64-linux-gnu/libxml2.so.2.9.2 mr,
 
 /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.28 mr,
+/usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.27 mr,
 
 /usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0.2400.28 mr,
+/usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0.2400.27 mr,
 
 /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0 r,
 /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.3600.8 mr,
 
 /usr/lib/x86_64-linux-gnu/libatk-1.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libatk-1.0.so.0.21609.1 mr,
+/usr/lib/x86_64-linux-gnu/libatk-1.0.so.0.21409.1 mr,
 
 /usr/lib/x86_64-linux-gnu/libcairo.so.2 r,
 /usr/lib/x86_64-linux-gnu/libcairo.so.2.11400.2 mr,
 
 /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0.3200.1 mr,
+/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0.3100.3 mr,
 
 /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0 r,
 /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3600.8 mr,
@@ -340,13 +340,13 @@ dbus (send)
 /usr/lib/x86_64-linux-gnu/libsecret-1.so.0.0.0 mr,
 
 /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4600.1 mr,
+/usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4400.1 mr,
 
 /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4600.1 mr,
+/usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4400.1 mr,
 
 /lib/x86_64-linux-gnu/libglib-2.0.so.0 r,
-/lib/x86_64-linux-gnu/libglib-2.0.so.0.4600.1 mr,
+/lib/x86_64-linux-gnu/libglib-2.0.so.0.4400.1 mr,
 
 /lib/x86_64-linux-gnu/libz.so.1 r,
 /lib/x86_64-linux-gnu/libz.so.1.2.8 mr,
@@ -418,13 +418,13 @@ dbus (send)
 /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.935.0 mr,
 
 /usr/lib/x86_64-linux-gnu/libthai.so.0 r,
-/usr/lib/x86_64-linux-gnu/libthai.so.0.2.2 mr,
+/usr/lib/x86_64-linux-gnu/libthai.so.0.2.0 mr,
 
 /lib/x86_64-linux-gnu/libexpat.so.1 r,
 /lib/x86_64-linux-gnu/libexpat.so.1.6.0 mr,
 
 /lib/x86_64-linux-gnu/libgcrypt.so.20 r,
-/lib/x86_64-linux-gnu/libgcrypt.so.20.0.3 mr,
+/lib/x86_64-linux-gnu/libgcrypt.so.20.0.2 mr,
 
 /lib/x86_64-linux-gnu/libselinux.so.1 mr,
 
@@ -447,10 +447,10 @@ dbus (send)
 /usr/lib/x86_64-linux-gnu/libgraphite2.so.3.0.1 mr,
 
 /usr/lib/x86_64-linux-gnu/libdatrie.so.1 r,
-/usr/lib/x86_64-linux-gnu/libdatrie.so.1.3.2 mr,
+/usr/lib/x86_64-linux-gnu/libdatrie.so.1.3.1 mr,
 
 /lib/x86_64-linux-gnu/libgpg-error.so.0 r,
-/lib/x86_64-linux-gnu/libgpg-error.so.0.15.0 mr,
+/lib/x86_64-linux-gnu/libgpg-error.so.0.13.0 mr,
 
 /usr/lib/x86_64-linux-gnu/libICE.so.6 r,
 /usr/lib/x86_64-linux-gnu/libICE.so.6.3.0 mr,
@@ -462,7 +462,7 @@ dbus (send)
 /usr/lib/x86_64-linux-gnu/libjpeg.so.62.1.0 mr,
 
 /usr/lib/x86_64-linux-gnu/libstdc++.so.6 r,
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21 mr,
+/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.20 mr,
 
 /lib/x86_64-linux-gnu/libgcc_s.so.1 mr,
 
