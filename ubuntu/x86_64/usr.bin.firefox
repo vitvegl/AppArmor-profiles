@@ -2,17 +2,20 @@
 
 dbus,
 network,
-deny capability,
+capability mknod,
 
 signal (send) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
 signal (receive) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
+
+signal (send) set=("kill") peer=unconfined,
+signal (receive) set=("kill") peer=unconfined,
 
 /proc/{,**} r,
 
 /sys/devices/{,**} r,
 /sys/devices/system/cpu/online r,
 
-owner /run/user/1001/pulse/{,**} rw,
+owner /run/user/*/pulse/{,**} rw,
 
 deny /tmp/[a-z]*.exe rw,
 deny /tmp/_[a-z]*.exe rw,
