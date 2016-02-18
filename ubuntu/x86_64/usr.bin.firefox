@@ -12,7 +12,8 @@ signal (receive) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
 /sys/devices/{,**} r,
 /sys/devices/system/cpu/online r,
 
-owner /run/user/1001/pulse/{,**} rw,
+owner /run/user/*/pulse/{,**} rw,
+owner /run/user/*/dconf/user rw,
 
 deny /tmp/[a-z]*.exe rw,
 deny /tmp/_[a-z]*.exe rw,
@@ -30,6 +31,8 @@ owner /home/*/.Xauthority r,
 owner /home/*/.mozilla/{,**} rw,
 owner /home/*/.gtkrc-2.0 r,
 owner /home/*/.gtk-bookmarks r,
+owner /home/*/.local/share/applications/mimeinfo.cache r,
+owner /home/*/.config/dconf/user r,
 
 /var/tmp/{,**} r,
 /tmp/ r,
@@ -83,6 +86,8 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/firefox-addons/plugins/{,**} r,
 
 /usr/lib/firefox-addons/extensions/{,**} r,
+
+/usr/share/glib-2.0/schemas/gschemas.compiled r,
 
 /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules.cache r,
 /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-am-et.so rm,
@@ -148,15 +153,15 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/x86_64-linux-gnu/libdrm_intel.so.1.0.0 rm,
 
 /lib/x86_64-linux-gnu/libudev.so.1 r,
-/lib/x86_64-linux-gnu/libudev.so.1.6.4 rm,
+/lib/x86_64-linux-gnu/libudev.so.1.6.2 rm,
 
 /usr/lib/x86_64-linux-gnu/dri/i965_dri.so rm,
 
-/usr/lib/x86_64-linux-gnu/libicudata.so.55 r,
-/usr/lib/x86_64-linux-gnu/libicudata.so.55.1 rm,
+/usr/lib/x86_64-linux-gnu/libicudata.so.52 r,
+/usr/lib/x86_64-linux-gnu/libicudata.so.52.1 rm,
 
-/usr/lib/x86_64-linux-gnu/libicuuc.so.55 r,
-/usr/lib/x86_64-linux-gnu/libicuuc.so.55.1 rm,
+/usr/lib/x86_64-linux-gnu/libicuuc.so.52 r,
+/usr/lib/x86_64-linux-gnu/libicuuc.so.52.1 rm,
 
 /usr/lib/x86_64-linux-gnu/libxml2.so.2 r,
 /usr/lib/x86_64-linux-gnu/libxml2.so.2.9.2 rm,
@@ -165,7 +170,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/x86_64-linux-gnu/libcroco-0.6.so.3.0.1 rm,
 
 /usr/lib/x86_64-linux-gnu/librsvg-2.so.2 r,
-/usr/lib/x86_64-linux-gnu/librsvg-2.so.2.40.10 rm,
+/usr/lib/x86_64-linux-gnu/librsvg-2.so.2.40.9 rm,
 
 /usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders.cache r,
 /usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-ani.so rm,
@@ -637,10 +642,10 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0 rm,
 
 /usr/lib/x86_64-linux-gnu/libdatrie.so.1 r,
-/usr/lib/x86_64-linux-gnu/libdatrie.so.1.3.2 rm,
+/usr/lib/x86_64-linux-gnu/libdatrie.so.1.3.1 rm,
 
 /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0 r,
-/usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.10000.1 rm,
+/usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.937.0 rm,
 
 /lib/x86_64-linux-gnu/libgcrypt.so.20 r,
 /lib/x86_64-linux-gnu/libgcrypt.so.20.0.3 rm,
@@ -657,8 +662,8 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/x86_64-linux-gnu/libX11-xcb.so.1 r,
 /usr/lib/x86_64-linux-gnu/libX11-xcb.so.1.0.0 rm,
 
-/usr/lib/x86_64-linux-gnu/libxcb-util.so.1 r,
-/usr/lib/x86_64-linux-gnu/libxcb-util.so.1.0.0 rm,
+/usr/lib/x86_64-linux-gnu/libxcb-util.so.0 r,
+/usr/lib/x86_64-linux-gnu/libxcb-util.so.0.0.0 rm,
 
 /usr/lib/x86_64-linux-gnu/libxcb.so.1 r,
 /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0 rm,
@@ -673,7 +678,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/x86_64-linux-gnu/libpixman-1.so.0.32.6 rm,
 
 /usr/lib/x86_64-linux-gnu/libthai.so.0 r,
-/usr/lib/x86_64-linux-gnu/libthai.so.0.2.2 rm,
+/usr/lib/x86_64-linux-gnu/libthai.so.0.2.0 rm,
 
 /usr/lib/x86_64-linux-gnu/libXcursor.so.1 r,
 /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2 rm,
@@ -696,7 +701,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3600.8 rm,
 
 /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.4600.1 rm,
+/usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.4400.1 rm,
 
 /lib/x86_64-linux-gnu/libpcre.so.3 r,
 /lib/x86_64-linux-gnu/libpcre.so.3.13.1 rm,
@@ -721,7 +726,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /lib/x86_64-linux-gnu/libz.so.1.2.8 rm,
 
 /usr/lib/x86_64-linux-gnu/libgthread-2.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libgthread-2.0.so.0.4600.1 rm,
+/usr/lib/x86_64-linux-gnu/libgthread-2.0.so.0.4400.1 rm,
 
 /usr/lib/x86_64-linux-gnu/libXt.so.6 r,
 /usr/lib/x86_64-linux-gnu/libXt.so.6.0.0 rm,
@@ -733,7 +738,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/x86_64-linux-gnu/libstartup-notification-1.so.0.0.0 rm,
 
 /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0.3200.1 rm,
+/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0.3100.3 rm,
 
 /usr/lib/x86_64-linux-gnu/libcairo.so.2 r,
 /usr/lib/x86_64-linux-gnu/libcairo.so.2.11400.2 rm,
@@ -747,31 +752,31 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0 r,
 /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.3600.8 rm,
 /usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0.2400.28 rm,
+/usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0.2400.27 rm,
 
 /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4600.1 rm,
+/usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4400.1 rm,
 
 /usr/lib/x86_64-linux-gnu/libatk-1.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libatk-1.0.so.0.21609.1 rm,
+/usr/lib/x86_64-linux-gnu/libatk-1.0.so.0.21409.1 rm,
 
 /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.28 rm,
+/usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.27 rm,
 
 /lib/x86_64-linux-gnu/libglib-2.0.so.0 r,
-/lib/x86_64-linux-gnu/libglib-2.0.so.0.4600.1 rm,
+/lib/x86_64-linux-gnu/libglib-2.0.so.0.4400.1 rm,
 
 /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0 r,
-/usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4600.1 rm,
+/usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4400.1 rm,
 
 /lib/x86_64-linux-gnu/libdbus-1.so.3 r,
-/lib/x86_64-linux-gnu/libdbus-1.so.3.14.3 rm,
+/lib/x86_64-linux-gnu/libdbus-1.so.3.8.9 rm,
 
 /usr/lib/x86_64-linux-gnu/libasound.so.2 r,
 /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0 rm,
 
 /usr/lib/x86_64-linux-gnu/libdbus-glib-1.so.2 r,
-/usr/lib/x86_64-linux-gnu/libdbus-glib-1.so.2.3.2 rm,
+/usr/lib/x86_64-linux-gnu/libdbus-glib-1.so.2.2.2 rm,
 
 /lib/x86_64-linux-gnu/libpthread.so.0 r,
 /lib/x86_64-linux-gnu/libpthread-2.21.so rm,
@@ -780,7 +785,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /lib/x86_64-linux-gnu/libdl-2.21.so rm,
 
 /usr/lib/x86_64-linux-gnu/libstdc++.so.6 r,
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21 rm,
+/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.20 rm,
 
 /lib/x86_64-linux-gnu/libc.so.6 r,
 /lib/x86_64-linux-gnu/libc-2.21.so rm,
