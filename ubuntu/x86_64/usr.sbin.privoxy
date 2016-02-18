@@ -9,6 +9,14 @@
  capability setuid,
  capability setgid,
 
+ signal (send) set=("kill") peer=unconfined,
+ signal (receive) set=("kill") peer=unconfined,
+
+ signal (send, receive) set=("term") peer=unconfined,
+ signal (send, receive) set=("cont") peer=unconfined,
+
+ unix,
+
 /usr/sbin/privoxy mr,
 
 /lib/x86_64-linux-gnu/libc.so.6 r,
@@ -57,6 +65,7 @@
 
 /proc/*/net/route r,
 /proc/sys/kernel/ngroups_max r,
+/proc/sys/vm/overcommit_memory r,
 
 /dev/null rw,
 
