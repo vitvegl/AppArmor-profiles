@@ -2,10 +2,21 @@
 
 dbus,
 network,
-deny capability,
+capability mknod,
 
 signal (send) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
 signal (receive) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
+
+signal (send) set=("exists") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
+signal (receive) set=("exists") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
+
+signal (send) set=("exists") peer=unconfined,
+signal (receive) set=("exists") peer=unconfined,
+
+signal (send) set=("kill") peer=unconfined,
+signal (receive) set=("kill") peer=unconfined,
+
+/var/lib/dbus/machine-id r,
 
 /proc/{,**} r,
 
@@ -31,10 +42,13 @@ owner /home/*/.Xauthority r,
 owner /home/*/.mozilla/{,**} rw,
 owner /home/*/.gtkrc-2.0 r,
 owner /home/*/.gtk-bookmarks r,
-owner /home/*/.local/share/applications/mimeinfo.cache r,
+owner /home/*/.local/share/applications/{,**} r,
 owner /home/*/.config/dconf/user r,
+owner /home/*/.cache/event-sound-cache.tdb.*.x86_64-pc-linux-gnu rw,
+owner /home/*/.local/share/recently-used.xbel r,
+owner /home/*/.config/gtk-2.0/{,**} rw,
 
-/var/tmp/{,**} r,
+/var/tmp/{,**} rw,
 /tmp/ r,
 deny /tmp/.[a-z]*/{,**} rwklmx,
 deny /tmp/.[A-Z]*/{,**} rwklmx,
@@ -44,6 +58,7 @@ deny /tmp/systemd*/{,**} rwklmx,
 deny /tmp/ssh*/{,**} rwklmx,
 
 /etc/ld.so.cache r,
+/etc/passwd r,
 
 /dev/null rw,
 /dev/shm/ r,
@@ -108,6 +123,27 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/printbackends/libprintbackend-test.so rm,
 
 /usr/lib/x86_64-linux-gnu/libXss.so.1.0.0 rm,
+
+/usr/lib/x86_64-linux-gnu/libwayland-client.so.0 r,
+/usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0 rm,
+
+/usr/lib/x86_64-linux-gnu/libxkbcommon.so.0 r,
+/usr/lib/x86_64-linux-gnu/libxkbcommon.so.0.0.0 rm,
+
+/usr/lib/x86_64-linux-gnu/libwayland-cursor.so.0 r,
+/usr/lib/x86_64-linux-gnu/libwayland-cursor.so.0.0.0 rm,
+
+/usr/lib/x86_64-linux-gnu/libmirclient.so.8 rm,
+/usr/lib/x86_64-linux-gnu/libmircommon.so.3 rm,
+/usr/lib/x86_64-linux-gnu/libmirprotobuf.so.0 rm,
+/usr/lib/x86_64-linux-gnu/libboost_system.so.1.55.0 rm,
+/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.55.0 rm,
+
+/usr/lib/x86_64-linux-gnu/libprotobuf.so.9 r,
+/usr/lib/x86_64-linux-gnu/libprotobuf.so.9.0.1 rm,
+
+/usr/lib/x86_64-linux-gnu/libavcodec.so.56 r,
+/usr/lib/x86_64-linux-gnu/libavcodec.so.56.1.0 rm,
 
 /usr/lib/x86_64-linux-gnu/libdbusmenu-gtk.so.4.0.12 rm,
 /usr/lib/x86_64-linux-gnu/libdbusmenu-glib.so.4.0.12 rm,
@@ -630,7 +666,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/x86_64-linux-gnu/libgraphite2.so.3.0.1 rm,
 
 /lib/x86_64-linux-gnu/libgpg-error.so.0 r,
-/lib/x86_64-linux-gnu/libgpg-error.so.0.15.0 rm,
+/lib/x86_64-linux-gnu/libgpg-error.so.0.13.0 rm,
 
 /lib/x86_64-linux-gnu/libuuid.so.1 r,
 /lib/x86_64-linux-gnu/libuuid.so.1.3.0 rm,
@@ -648,7 +684,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.937.0 rm,
 
 /lib/x86_64-linux-gnu/libgcrypt.so.20 r,
-/lib/x86_64-linux-gnu/libgcrypt.so.20.0.3 rm,
+/lib/x86_64-linux-gnu/libgcrypt.so.20.0.2 rm,
 
 /lib/x86_64-linux-gnu/liblzma.so.5 r,
 /lib/x86_64-linux-gnu/liblzma.so.5.0.0 rm,
@@ -710,7 +746,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/x86_64-linux-gnu/libffi.so.6.0.4 rm,
 
 /lib/x86_64-linux-gnu/libsystemd.so.0 r,
-/lib/x86_64-linux-gnu/libsystemd.so.0.10.2 rm,
+/lib/x86_64-linux-gnu/libsystemd.so.0.6.0 rm,
 
 /lib/x86_64-linux-gnu/libexpat.so.1 r,
 /lib/x86_64-linux-gnu/libexpat.so.1.6.0 rm,
@@ -737,11 +773,17 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/x86_64-linux-gnu/libstartup-notification-1.so.0 r,
 /usr/lib/x86_64-linux-gnu/libstartup-notification-1.so.0.0.0 rm,
 
+/usr/lib/x86_64-linux-gnu/libgdk-3.so.0 r,
+/usr/lib/x86_64-linux-gnu/libgdk-3.so.0.1400.13 rm,
+
 /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0 r,
 /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0.3100.3 rm,
 
 /usr/lib/x86_64-linux-gnu/libcairo.so.2 r,
 /usr/lib/x86_64-linux-gnu/libcairo.so.2.11400.2 rm,
+
+/usr/lib/x86_64-linux-gnu/libcairo-gobject.so.2 r,
+/usr/lib/x86_64-linux-gnu/libcairo-gobject.so.2.11400.2 rm,
 
 /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0 r,
 /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3600.8 rm,
@@ -759,6 +801,9 @@ deny /tmp/ssh*/{,**} rwklmx,
 
 /usr/lib/x86_64-linux-gnu/libatk-1.0.so.0 r,
 /usr/lib/x86_64-linux-gnu/libatk-1.0.so.0.21409.1 rm,
+
+/usr/lib/x86_64-linux-gnu/libgtk-3.so.0 r,
+/usr/lib/x86_64-linux-gnu/libgtk-3.so.0.1400.13 rm,
 
 /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0 r,
 /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.27 rm,
