@@ -1,6 +1,6 @@
 /usr/lib/firefox/firefox{,*[^s][^h]} {
 
-dbus,
+#dbus,
 network,
 capability mknod,
 
@@ -10,12 +10,29 @@ signal (receive) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
 signal (send) set=("kill") peer=unconfined,
 signal (receive) set=("kill") peer=unconfined,
 
+dbus (send)
+  bus=system
+  path=/org/freedesktop/DBus
+  interface=org.freedesktop.DBus
+  member=Hello,AddMatch,RemoveMatch,GetNameOwner
+  peer=(name=org.freedesktop.DBus),
+
+dbus (send)
+  bus=system
+  path=/org/freedesktop/UPower
+  interface=org.freedesktop.UPower
+  member=EnumerateDevices
+  peer=(name=org.freedesktop.UPower),
+
 /proc/{,**} r,
 
 /sys/devices/{,**} r,
 /sys/devices/system/cpu/online r,
 
 owner /run/user/*/pulse/{,*} rw,
+owner /run/user/*/dconf/{,*} rw,
+
+deny /etc/passwd r,
 
 deny /tmp/[a-z]*.exe rw,
 deny /tmp/_[a-z]*.exe rw,
@@ -24,17 +41,24 @@ owner /tmp/_[a-z]* rw,
 owner /tmp/[a-z]*.tar{,.*} rw,
 owner /tmp/mozilla_mozillaUser0/{,**} rw,
 owner /home/*/Downloads/{,**} rw,
-owner /home/*/.cache/event-sound-cache.tdb.*.i386-pc-linux-gnu r,
+owner /home/*/.cache/event-sound-cache.tdb.*.i686-pc-linux-gnu rw,
 owner /home/*/.cache/mozilla/{,**} rwlk,
+owner /home/*/.cache/gstreamer-*/{,**} rw,
+owner /home/*/.config/dconf/user rw,
 owner /home/*/.config/mozilla/{,**} rwlk,
 owner /home/*/.config/user-dirs.dirs r,
+owner /home/*/.config/gtk-*/{,**} r,
 owner /home/*/.icons/{,**} r,
+owner /home/*/.local/share/recently-used* rw,
 owner /home/*/.Xauthority r,
 owner /home/*/.mozilla/{,**} rw,
 owner /home/*/.gtkrc-2.0 r,
 owner /home/*/.gtk-bookmarks r,
 
-/var/tmp/{,**} r,
+owner /var/tmp/mozilla*/{,**} rw,
+owner /var/tmp/[a-z]*\\_\\*/{,**} rw,
+owner /var/tmp/{,**} rw,
+/var/tmp/ r,
 /tmp/ r,
 deny /tmp/.[a-z]*/{,**} rwklmx,
 deny /tmp/.[A-Z]*/{,**} rwklmx,
@@ -45,14 +69,23 @@ deny /tmp/ssh*/{,**} rwklmx,
 
 /etc/ld.so.cache r,
 
+/etc/group r,
+
 /dev/null rw,
 /dev/shm/ r,
 /dev/shm/pulse-shm* rw,
 /dev/urandom r,
 
+/dev/snd/controlC0 rw,
+/dev/snd/pcm* rw,
+/dev/snd/timer r,
+
+/run/dbus/system_bus_socket rw,
 /run/udev/data/+pci* r,
 
 /var/cache/fontconfig/{,**} r,
+/usr/share/glib-2.0/schemas/gschemas.compiled r,
+/usr/share/libthai/* r,
 
 /dev/dri/card0 rw,
 /sys/devices/pci*/**/uevent r,
@@ -80,6 +113,9 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/share/mate/{,**} r,
 /usr/share/mozilla/{,**} r,
 
+# lubuntu-specific
+/etc/xdg/lubuntu/{,**} r,
+
 /etc/locale.alias r,
 
 /usr/lib/firefox/{,**} r,
@@ -99,6 +135,191 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/gtk-2.0/2.10.0/immodules/im-ti-et.so rm,
 /usr/lib/i386-linux-gnu/gtk-2.0/2.10.0/immodules/im-viqr.so rm,
 /usr/lib/i386-linux-gnu/gtk-2.0/2.10.0/immodules/im-xim.so rm,
+/usr/lib/i386-linux-gnu/gtk-2.0/2.10.0/immodules/im-fcitx.so rm,
+
+/lib/i386-linux-gnu/libnss_compat.so.2 r,
+/lib/i386-linux-gnu/libnss_compat-2.21.so rm,
+
+/lib/i386-linux-gnu/libnss_nis.so.2 r,
+/lib/i386-linux-gnu/libnss_nis-2.21.so rm,
+
+/usr/lib/i386-linux-gnu/x265-10bit/libx265.so.59 rm,
+
+/usr/lib/i386-linux-gnu/libgomp.so.1 r,
+/usr/lib/i386-linux-gnu/libgomp.so.1.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libnuma.so.1 r,
+/usr/lib/i386-linux-gnu/libnuma.so.1.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libsoxr.so.0 r,
+/usr/lib/i386-linux-gnu/libsoxr.so.0.1.0 rm,
+
+/usr/lib/i386-linux-gnu/libcrystalhd.so.3 r,
+/usr/lib/i386-linux-gnu/libcrystalhd.so.3.6 rm,
+
+/usr/lib/i386-linux-gnu/libgsm.so.1 r,
+/usr/lib/i386-linux-gnu/libgsm.so.1.0.12 rm,
+
+/usr/lib/i386-linux-gnu/libopenjpeg.so.1 r,
+/usr/lib/i386-linux-gnu/libopenjpeg.so.1.5.2 rm,
+
+/usr/lib/i386-linux-gnu/libmp3lame.so.0 r,
+/usr/lib/i386-linux-gnu/libmp3lame.so.0.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libshine.so.3 r,
+/usr/lib/i386-linux-gnu/libshine.so.3.0.1 rm,
+
+/usr/lib/i386-linux-gnu/libgudev-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgudev-1.0.so.0.2.0 rm,
+
+/usr/lib/i386-linux-gnu/libx264.so.146 rm,
+/usr/lib/i386-linux-gnu/i686/sse2/libx264.so.146 rm,
+
+/usr/lib/i386-linux-gnu/libwebp.so.5 r,
+/usr/lib/i386-linux-gnu/libwebp.so.5.0.3 rm,
+
+/usr/lib/i386-linux-gnu/libv4lconvert.so.0 r,
+/usr/lib/i386-linux-gnu/libv4lconvert.so.0.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libv4l/v4l2convert.so rm,
+/usr/lib/i386-linux-gnu/libv4l/v4l1compat.so rm,
+
+/usr/lib/i386-linux-gnu/libtwolame.so.0 r,
+/usr/lib/i386-linux-gnu/libtwolame.so.0.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libschroedinger-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libschroedinger-1.0.so.0.11.0 rw,
+
+/usr/lib/i386-linux-gnu/libopus.so.0 r,
+/usr/lib/i386-linux-gnu/libopus.so.0.5.0 rm,
+
+/usr/lib/i386-linux-gnu/libfcitx-gclient.so.0 r,
+/usr/lib/i386-linux-gnu/libfcitx-gclient.so.0.1 rm,
+
+/usr/lib/i386-linux-gnu/libfcitx-utils.so.0 r,
+/usr/lib/i386-linux-gnu/libfcitx-utils.so.0.1 rm,
+
+/usr/lib/i386-linux-gnu/libwayland-client.so.0 r,
+/usr/lib/i386-linux-gnu/libwayland-client.so.0.3.0 rm,
+
+/usr/lib/i386-linux-gnu/libwayland-cursor.so.0 r,
+/usr/lib/i386-linux-gnu/libwayland-cursor.so.0.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libwayland-egl.so.1 r,
+/usr/lib/i386-linux-gnu/libwayland-egl.so.1.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libmirclient.so.9 rm,
+/usr/lib/i386-linux-gnu/libmircommon.so.5 rm,
+/usr/lib/i386-linux-gnu/libmirprotobuf.so.3 rm,
+
+/usr/lib/i386-linux-gnu/libboost_system.so.1.58.0 rm,
+/usr/lib/i386-linux-gnu/libboost_filesystem.so.1.58.0 rm,
+
+/usr/lib/i386-linux-gnu/libgstvideo-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstvideo-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libgstapp-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstapp-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libgstreamer-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstreamer-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libavcodec-ffmpeg.so.56 r,
+/usr/lib/i386-linux-gnu/libavcodec-ffmpeg.so.56.41.100 rm,
+
+/usr/lib/i386-linux-gnu/libavutil-ffmpeg.so.54 r,
+/usr/lib/i386-linux-gnu/libavutil-ffmpeg.so.54.27.100 rm,
+
+/usr/lib/i386-linux-gnu/libgstbase-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstbase-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/gstreamer-1.0/{,**} rm,
+
+/usr/lib/i386-linux-gnu/libgstpbutils-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstpbutils-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libgstaudio-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstaudio-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libgstnet-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstnet-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libfarstream-0.2.so.5 r,
+/usr/lib/i386-linux-gnu/libfarstream-0.2.so.5.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libgsttag-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgsttag-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libgstfft-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstfft-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libgstrtp-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstrtp-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libgstriff-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstriff-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libshout.so.3 r,
+/usr/lib/i386-linux-gnu/libshout.so.3.2.0 rm,
+
+/usr/lib/i386-linux-gnu/libgstallocators-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstallocators-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libavc1394.so.0 r,
+/usr/lib/i386-linux-gnu/libavc1394.so.0.3.0 rm,
+
+/usr/lib/i386-linux-gnu/libjpeg.so.8 r,
+/usr/lib/i386-linux-gnu/libjpeg.so.8.0.2 rm,
+
+/usr/lib/i386-linux-gnu/libgstpbutils-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstpbutils-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libaa.so.1 r,
+/usr/lib/i386-linux-gnu/libaa.so.1.0.4 rm,
+
+/usr/lib/i386-linux-gnu/libva.so.1 r,
+/usr/lib/i386-linux-gnu/libva.so.1.3800.0 rm,
+
+/usr/lib/i386-linux-gnu/libx265.so.59 rm,
+
+/usr/lib/i386-linux-gnu/libgstphotography-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstphotography-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper rm,
+/usr/lib/i386-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner rm,
+
+/usr/lib/i386-linux-gnu/libswresample-ffmpeg.so.1 r,
+/usr/lib/i386-linux-gnu/libswresample-ffmpeg.so.1.2.100 rm,
+
+/usr/lib/i386-linux-gnu/libprotobuf-lite.so.9 r,
+/usr/lib/i386-linux-gnu/libprotobuf-lite.so.9.0.1 rm,
+
+/usr/lib/libgssdp-1.0.so.3 r,
+/usr/lib/libgssdp-1.0.so.3.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libspeexdsp.so.1 r,
+/usr/lib/i386-linux-gnu/sse2/libspeex.so.1.5.0 rm,
+
+/usr/lib/i386-linux-gnu/libzvbi.so.0 r,
+/usr/lib/i386-linux-gnu/libzvbi.so.0.13.2 rm,
+
+/usr/lib/i386-linux-gnu/libsqlite3.so.0 r,
+/usr/lib/i386-linux-gnu/libsqlite3.so.0.8.6 rm,
+
+/lib/i386-linux-gnu/libslang.so.2 r,
+/lib/i386-linux-gnu/libslang.so.2.3.0 rm,
+
+/usr/lib/i386-linux-gnu/libgstsdp-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstsdp-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libcdda_paranoia.so.0 r,
+/usr/lib/i386-linux-gnu/libcdda_paranoia.so.0.10.2 rm,
+
+/usr/lib/i386-linux-gnu/libiec61883.so.0 r,
+/usr/lib/i386-linux-gnu/libiec61883.so.0.1.1 rm,
+
+/usr/lib/i386-linux-gnu/libtheoradec.so.1 r,
+/usr/lib/i386-linux-gnu/libtheoradec.so.1.1.4 rm,
 
 /usr/lib/i386-linux-gnu/gtk-2.0/2.10.0/printbackends/libprintbackend-cups.so rm,
 /usr/lib/i386-linux-gnu/gtk-2.0/2.10.0/printbackends/libprintbackend-file.so rm,
@@ -114,6 +335,11 @@ deny /tmp/ssh*/{,**} rwklmx,
 
 /usr/lib/i386-linux-gnu/libgmp.so.10 r,
 /usr/lib/i386-linux-gnu/libgmp.so.10.2.0 rm,
+
+/usr/lib/i386-linux-gnu/libgpm.so.2 rm,
+
+/usr/lib/i386-linux-gnu/libxvidcore.so.4 r,
+/usr/lib/i386-linux-gnu/libxvidcore.so.4.3 rm,
 
 /usr/lib/i386-linux-gnu/libhogweed.so.2 r,
 /usr/lib/i386-linux-gnu/libhogweed.so.2.5 rm,
@@ -133,6 +359,12 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libp11-kit.so.0 r,
 /usr/lib/i386-linux-gnu/libp11-kit.so.0.0.0 rm,
 
+/usr/lib/i386-linux-gnu/libepoxy.so.0 r,
+/usr/lib/i386-linux-gnu/libepoxy.so.0.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libnice.so.10 r,
+/usr/lib/i386-linux-gnu/libnice.so.10.6.2 rm,
+
 /usr/lib/i386-linux-gnu/gvfs/libgvfscommon.so rm,
 
 /usr/lib/i386-linux-gnu/gio/modules/ r,
@@ -151,15 +383,15 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libdrm_intel.so.1.0.0 rm,
 
 /lib/i386-linux-gnu/libudev.so.1 r,
-/lib/i386-linux-gnu/libudev.so.1.6.2 rm,
+/lib/i386-linux-gnu/libudev.so.1.6.4 rm,
 
 /usr/lib/i386-linux-gnu/dri/i965_dri.so rm,
 
 /usr/lib/i386-linux-gnu/libicudata.so.52 r,
-/usr/lib/i386-linux-gnu/libicudata.so.52.1 rm,
+/usr/lib/i386-linux-gnu/libicudata.so.55.1 rm,
 
 /usr/lib/i386-linux-gnu/libicuuc.so.52 r,
-/usr/lib/i386-linux-gnu/libicuuc.so.52.1 rm,
+/usr/lib/i386-linux-gnu/libicuuc.so.55.1 rm,
 
 /usr/lib/i386-linux-gnu/libxml2.so.2 r,
 /usr/lib/i386-linux-gnu/libxml2.so.2.9.2 rm,
@@ -168,7 +400,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libcroco-0.6.so.3.0.1 rm,
 
 /usr/lib/i386-linux-gnu/librsvg-2.so.2 r,
-/usr/lib/i386-linux-gnu/librsvg-2.so.2.40.9 rm,
+/usr/lib/i386-linux-gnu/librsvg-2.so.2.40.10 rm,
 
 /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders.cache r,
 /usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-ani.so rm,
@@ -198,10 +430,77 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/share/X11/{,**} r,
 /usr/share/themes/{,**} r,
 
+/usr/lib/i386-linux-gnu/libspeex.so.1 r,
+/usr/lib/i386-linux-gnu/libspeex.so.1.5.0 rm,
+
+/usr/lib/i386-linux-gnu/libspeexdsp.so.1 r,
 /usr/lib/i386-linux-gnu/libspeexdsp.so.1.5.0 rm,
 
 /usr/lib/i386-linux-gnu/liborc-0.4.so.0 r,
-/usr/lib/i386-linux-gnu/liborc-0.4.so.0.22.0 rm,
+/usr/lib/i386-linux-gnu/liborc-0.4.so.0.23.0 rm,
+
+/usr/lib/i386-linux-gnu/liborc-test-0.4.so.0 r,
+/usr/lib/i386-linux-gnu/liborc-test-0.4.so.0.23.0 rm,
+
+/usr/lib/i386-linux-gnu/libvisual-0.4.so.0 r,
+/usr/lib/i386-linux-gnu/libvisual-0.4.so.0.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libgupnp-igd-1.0.so.4 r,
+/usr/lib/i386-linux-gnu/libgupnp-igd-1.0.so.4.2.0 rm,
+
+/usr/lib/i386-linux-gnu/libjack.so.0 r,
+/usr/lib/i386-linux-gnu/libjack.so.0.1.0 rm,
+
+/usr/lib/i386-linux-gnu/libsoup-2.4.so.1 r,
+/usr/lib/i386-linux-gnu/libsoup-2.4.so.1.7.0 rm,
+
+/usr/lib/i386-linux-gnu/libcaca.so.0 r,
+/usr/lib/i386-linux-gnu/libcaca.so.0.99.19 rm,
+
+/usr/lib/i386-linux-gnu/libtag.so.1 r,
+/usr/lib/i386-linux-gnu/libtag.so.1.14.0 rm,
+
+/lib/i386-linux-gnu/libbz2.so.1 r,
+/lib/i386-linux-gnu/libbz2.so.1.0.4 rm,
+
+/usr/lib/i386-linux-gnu/libtheora.so.0 r,
+/usr/lib/i386-linux-gnu/libtheora.so.0.3.10 rm,
+
+/usr/lib/i386-linux-gnu/libv4l2.so.0 r,
+/usr/lib/i386-linux-gnu/libv4l2.so.0.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libgstrtsp-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstrtsp-1.0.so.0.603.0 rm,
+
+/usr/lib/i386-linux-gnu/libcdda_interface.so.0 r,
+/usr/lib/i386-linux-gnu/libcdda_interface.so.0.10.2 rm,
+
+/usr/lib/i386-linux-gnu/libdv.so.4 r,
+/usr/lib/i386-linux-gnu/libdv.so.4.0.3 rm,
+
+/usr/lib/i386-linux-gnu/librom1394.so.0 r,
+/usr/lib/i386-linux-gnu/librom1394.so.0.3.0 rm,
+
+/usr/lib/i386-linux-gnu/libwavpack.so.1 r,
+/usr/lib/i386-linux-gnu/libwavpack.so.1.1.6 rm,
+
+/usr/lib/i386-linux-gnu/libtheoraenc.so.1 r,
+/usr/lib/i386-linux-gnu/libtheoraenc.so.1.1.2 rm,
+
+/usr/lib/i386-linux-gnu/libvpx.so.2 r,
+/usr/lib/i386-linux-gnu/libvpx.so.2.0.0 rm,
+
+/lib/i386-linux-gnu/libncurses{,w}.so.5 r,
+/lib/i386-linux-gnu/libncurses{,w}.so.5.9 rm,
+
+/usr/lib/i386-linux-gnu/libraw1394.so.11 r,
+/usr/lib/i386-linux-gnu/libraw1394.so.11.1.0 rm,
+
+/usr/lib/libgupnp-1.0.so.4 r,
+/usr/lib/libgupnp-1.0.so.4.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libgstbasecamerabinsrc-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgstbasecamerabinsrc-1.0.so.0.603.0 rm,
 
 /lib/i386-linux-gnu/libcap.so.2.24 rm,
 
@@ -309,7 +608,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libltdl.so.7.3.0 rm,
 
 /usr/lib/i386-linux-gnu/libtdb.so.1 r,
-/usr/lib/i386-linux-gnu/libtdb.so.1.3.4 rm,
+/usr/lib/i386-linux-gnu/libtdb.so.1.3.5 rm,
 
 /usr/lib/locale/locale-archive r,
 /usr/share/locale/locale.alias r,
@@ -620,6 +919,9 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libxcb-glx.so.0 r,
 /usr/lib/i386-linux-gnu/libxcb-glx.so.0.0.0 rm,
 
+/usr/lib/i386-linux-gnu/libxkbcommon.so.0 r,
+/usr/lib/i386-linux-gnu/libxkbcommon.so.0.0.0 rm,
+
 /usr/lib/i386-linux-gnu/libglapi.so.0 r,
 /usr/lib/i386-linux-gnu/libglapi.so.0.0.0 rm,
 
@@ -630,7 +932,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libgraphite2.so.3.0.1 rm,
 
 /lib/i386-linux-gnu/libgpg-error.so.0 r,
-/lib/i386-linux-gnu/libgpg-error.so.0.13.0 rm,
+/lib/i386-linux-gnu/libgpg-error.so.0.15.0 rm,
 
 /lib/i386-linux-gnu/libuuid.so.1 r,
 /lib/i386-linux-gnu/libuuid.so.1.3.0 rm,
@@ -642,13 +944,13 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libXau.so.6.0.0 rm,
 
 /usr/lib/i386-linux-gnu/libdatrie.so.1 r,
-/usr/lib/i386-linux-gnu/libdatrie.so.1.3.1 rm,
+/usr/lib/i386-linux-gnu/libdatrie.so.1.3.2 rm,
 
 /usr/lib/i386-linux-gnu/libharfbuzz.so.0 r,
-/usr/lib/i386-linux-gnu/libharfbuzz.so.0.937.0 rm,
+/usr/lib/i386-linux-gnu/libharfbuzz.so.0.10000.1 rm,
 
 /lib/i386-linux-gnu/libgcrypt.so.20 r,
-/lib/i386-linux-gnu/libgcrypt.so.20.0.2 rm,
+/lib/i386-linux-gnu/libgcrypt.so.20.0.3 rm,
 
 /lib/i386-linux-gnu/liblzma.so.5 r,
 /lib/i386-linux-gnu/liblzma.so.5.0.0 rm,
@@ -662,8 +964,8 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libX11-xcb.so.1 r,
 /usr/lib/i386-linux-gnu/libX11-xcb.so.1.0.0 rm,
 
-/usr/lib/i386-linux-gnu/libxcb-util.so.0 r,
-/usr/lib/i386-linux-gnu/libxcb-util.so.0.0.0 rm,
+/usr/lib/i386-linux-gnu/libxcb-util.so.1 r,
+/usr/lib/i386-linux-gnu/libxcb-util.so.1.0.0 rm,
 
 /usr/lib/i386-linux-gnu/libxcb.so.1 r,
 /usr/lib/i386-linux-gnu/libxcb.so.1.1.0 rm,
@@ -678,7 +980,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libpixman-1.so.0.32.6 rm,
 
 /usr/lib/i386-linux-gnu/libthai.so.0 r,
-/usr/lib/i386-linux-gnu/libthai.so.0.2.0 rm,
+/usr/lib/i386-linux-gnu/libthai.so.0.2.2 rm,
 
 /usr/lib/i386-linux-gnu/libXcursor.so.1 r,
 /usr/lib/i386-linux-gnu/libXcursor.so.1.0.2 rm,
@@ -701,7 +1003,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libpangoft2-1.0.so.0.3600.8 rm,
 
 /usr/lib/i386-linux-gnu/libgmodule-2.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgmodule-2.0.so.0.4400.1 rm,
+/usr/lib/i386-linux-gnu/libgmodule-2.0.so.0.4600.2 rm,
 
 /lib/i386-linux-gnu/libpcre.so.3 r,
 /lib/i386-linux-gnu/libpcre.so.3.13.1 rm,
@@ -710,7 +1012,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libffi.so.6.0.4 rm,
 
 /lib/i386-linux-gnu/libsystemd.so.0 r,
-/lib/i386-linux-gnu/libsystemd.so.0.6.0 rm,
+/lib/i386-linux-gnu/libsystemd.so.0.10.2 rm,
 
 /lib/i386-linux-gnu/libexpat.so.1 r,
 /lib/i386-linux-gnu/libexpat.so.1.6.0 rm,
@@ -723,7 +1025,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /lib/i386-linux-gnu/libz.so.1.2.8 rm,
 
 /usr/lib/i386-linux-gnu/libgthread-2.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgthread-2.0.so.0.4400.1 rm,
+/usr/lib/i386-linux-gnu/libgthread-2.0.so.0.4600.2 rm,
 
 /usr/lib/i386-linux-gnu/libXt.so.6 r,
 /usr/lib/i386-linux-gnu/libXt.so.6.0.0 rm,
@@ -735,10 +1037,13 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libstartup-notification-1.so.0.0.0 rm,
 
 /usr/lib/i386-linux-gnu/libgdk_pixbuf-2.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgdk_pixbuf-2.0.so.0.3100.3 rm,
+/usr/lib/i386-linux-gnu/libgdk_pixbuf-2.0.so.0.3200.1 rm,
 
 /usr/lib/i386-linux-gnu/libcairo.so.2 r,
 /usr/lib/i386-linux-gnu/libcairo.so.2.11400.2 rm,
+
+/usr/lib/i386-linux-gnu/libcairo-gobject.so.2 r,
+/usr/lib/i386-linux-gnu/libcairo-gobject.so.2.11400.2 rm,
 
 /usr/lib/i386-linux-gnu/libpango-1.0.so.0 r,
 /usr/lib/i386-linux-gnu/libpango-1.0.so.0.3600.8 rm,
@@ -749,31 +1054,37 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libpangocairo-1.0.so.0 r,
 /usr/lib/i386-linux-gnu/libpangocairo-1.0.so.0.3600.8 rm,
 /usr/lib/i386-linux-gnu/libgdk-x11-2.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgdk-x11-2.0.so.0.2400.27 rm,
+/usr/lib/i386-linux-gnu/libgdk-x11-2.0.so.0.2400.28 rm,
 
 /usr/lib/i386-linux-gnu/libgio-2.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgio-2.0.so.0.4400.1 rm,
+/usr/lib/i386-linux-gnu/libgio-2.0.so.0.4600.2 rm,
 
 /usr/lib/i386-linux-gnu/libatk-1.0.so.0 r,
-/usr/lib/i386-linux-gnu/libatk-1.0.so.0.21409.1 rm,
+/usr/lib/i386-linux-gnu/libatk-1.0.so.0.21609.1 rm,
 
 /usr/lib/i386-linux-gnu/libgtk-x11-2.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgtk-x11-2.0.so.0.2400.27 rm,
+/usr/lib/i386-linux-gnu/libgtk-x11-2.0.so.0.2400.28 rm,
+
+/usr/lib/i386-linux-gnu/libgtk-3.so.0 r,
+/usr/lib/i386-linux-gnu/libgtk-3.so.0.1600.7 rm,
+
+/usr/lib/i386-linux-gnu/libgdk-3.so.0 r,
+/usr/lib/i386-linux-gnu/libgdk-3.so.0.1600.7 rm,
 
 /lib/i386-linux-gnu/libglib-2.0.so.0 r,
-/lib/i386-linux-gnu/libglib-2.0.so.0.4400.1 rm,
+/lib/i386-linux-gnu/libglib-2.0.so.0.4600.2 rm,
 
 /usr/lib/i386-linux-gnu/libgobject-2.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgobject-2.0.so.0.4400.1 rm,
+/usr/lib/i386-linux-gnu/libgobject-2.0.so.0.4600.2 rm,
 
 /lib/i386-linux-gnu/libdbus-1.so.3 r,
-/lib/i386-linux-gnu/libdbus-1.so.3.8.9 rm,
+/lib/i386-linux-gnu/libdbus-1.so.3.14.3 rm,
 
 /usr/lib/i386-linux-gnu/libasound.so.2 r,
 /usr/lib/i386-linux-gnu/libasound.so.2.0.0 rm,
 
 /usr/lib/i386-linux-gnu/libdbus-glib-1.so.2 r,
-/usr/lib/i386-linux-gnu/libdbus-glib-1.so.2.2.2 rm,
+/usr/lib/i386-linux-gnu/libdbus-glib-1.so.2.3.2 rm,
 
 /lib/i386-linux-gnu/libpthread.so.0 r,
 /lib/i386-linux-gnu/libpthread-2.21.so rm,
@@ -782,7 +1093,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /lib/i386-linux-gnu/libdl-2.21.so rm,
 
 /usr/lib/i386-linux-gnu/libstdc++.so.6 r,
-/usr/lib/i386-linux-gnu/libstdc++.so.6.0.20 rm,
+/usr/lib/i386-linux-gnu/libstdc++.so.6.0.21 rm,
 
 /lib/i386-linux-gnu/libc.so.6 r,
 /lib/i386-linux-gnu/libc-2.21.so rm,
