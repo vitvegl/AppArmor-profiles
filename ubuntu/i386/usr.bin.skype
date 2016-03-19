@@ -2,12 +2,146 @@
 
 deny capability,
 network inet stream,
+network inet6 stream,
 network inet dgram,
+network inet6 dgram,
 network netlink raw,
 network netlink dgram,
 signal,
 
 /etc/ld.so.cache r,
+
+/etc/fonts/{,**} r,
+/etc/pulse/{,**} r,
+
+/proc/filesystems r,
+/proc/**/mounts r,
+/proc/*/fd/{,**} r,
+/proc/*/cmdline r,
+
+/etc/xdg/Trolltech.conf r,
+/usr/local/share/fonts/{,**} r,
+/usr/share/{font*,mime,pixmaps,poppler,themes}/{,**} r,
+
+/run/dbus/system_bus_socket rw,
+
+/sys/devices/**/id{Product,Vendor} r,
+/sys/devices/** r,
+
+/sys/class/power_supply/ r,
+
+/usr/lib/i386-linux-gnu/qt4/plugins/imageformats/{,**} rm,
+
+/usr/lib/i386-linux-gnu/libv4l1.so.0 r,
+/usr/lib/i386-linux-gnu/libv4l1.so.0.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libv4l2.so.0 r,
+/usr/lib/i386-linux-gnu/libv4l2.so.0.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libv4lconvert.so.0 r,
+/usr/lib/i386-linux-gnu/libv4lconvert.so.0.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libv4l/{,**} rm,
+
+/usr/lib/i386-linux-gnu/liblcms2.so.2 r,
+/usr/lib/i386-linux-gnu/liblcms2.so.2.0.6 rm,
+
+/usr/lib/i386-linux-gnu/libjbig.so.0 rm,
+
+/usr/lib/i386-linux-gnu/libmng.so.2 r,
+/usr/lib/i386-linux-gnu/libmng.so.2.0.2 rm,
+
+/usr/lib/i386-linux-gnu/libtiff.so.5 r,
+/usr/lib/i386-linux-gnu/libtiff.so.5.2.0 rm,
+
+/usr/lib/i386-linux-gnu/libfcitx-utils.so.0 r,
+/usr/lib/i386-linux-gnu/libfcitx-utils.so.0.1 rm,
+
+/usr/lib/i386-linux-gnu/libfcitx-gclient.so.0.1 rm,
+
+/usr/lib/i386-linux-gnu/libcroco-0.6.so.3 r,
+/usr/lib/i386-linux-gnu/libcroco-0.6.so.3.0.1 rm,
+
+/usr/lib/i386-linux-gnu/libxkbcommon.so.0 r,
+/usr/lib/i386-linux-gnu/libxkbcommon.so.0.0.0 rm,
+
+/lib/i386-linux-gnu/libssl.so.1 r,
+/lib/i386-linux-gnu/libssl.so.1.0.0 rm,
+
+/lib/i386-linux-gnu/libudev.so.1 r,
+/lib/i386-linux-gnu/libudev.so.1.6.4 rm,
+
+/usr/lib/i386-linux-gnu/librsvg-2.so.2 r,
+/usr/lib/i386-linux-gnu/librsvg-2.so.2.40.10 rm,
+
+/usr/lib/i386-linux-gnu/gvfs/{,**} rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-2.0/{,**} rm,
+/usr/lib/i386-linux-gnu/gtk-2.0/{,**} rm,
+
+/usr/lib/i386-linux-gnu/gio/modules/{,**} rm,
+
+/lib/i386-linux-gnu/libselinux.so.1 rm,
+
+/lib/i386-linux-gnu/libcrypto.so.1.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libdatrie.so.1 r,
+/usr/lib/i386-linux-gnu/libdatrie.so.1.3.2 rm,
+
+/usr/lib/i386-linux-gnu/libgraphite2.so.3 r,
+/usr/lib/i386-linux-gnu/libgraphite2.so.3.0.1 rm,
+
+/usr/lib/i386-linux-gnu/libthai.so.0 r,
+/usr/lib/i386-linux-gnu/libthai.so.0.2.2 rm,
+
+/usr/lib/i386-linux-gnu/libharfbuzz.so.0 r,
+/usr/lib/i386-linux-gnu/libharfbuzz.so.0.10000.1 rm,
+
+/usr/lib/i386-linux-gnu/libxcb-shm.so.0 r,
+/usr/lib/i386-linux-gnu/libxcb-shm.so.0.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libpixman-1.so.0 r,
+/usr/lib/i386-linux-gnu/libpixman-1.so.0.32.6 rm,
+
+/usr/lib/i386-linux-gnu/libXcomposite.so.1 r,
+/usr/lib/i386-linux-gnu/libXcomposite.so.1.0.0 rm,
+
+/usr/lib/i386-linux-gnu/libpango-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libpango-1.0.so.0.3600.8 rm,
+
+/usr/lib/i386-linux-gnu/libpangoft2-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libpangoft2-1.0.so.0.3600.8 rm,
+
+/usr/lib/i386-linux-gnu/libgdk_pixbuf-2.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgdk_pixbuf-2.0.so.0.3200.1 rm,
+
+/usr/lib/i386-linux-gnu/libcairo.so.2 r,
+/usr/lib/i386-linux-gnu/libcairo.so.2.11400.2 rm,
+
+/usr/lib/i386-linux-gnu/libatk-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libatk-1.0.so.0.21609.1 rm,
+
+/usr/lib/i386-linux-gnu/mesa/libGL.so.1 r,
+/usr/lib/i386-linux-gnu/mesa/libGL.so.1.2.0 rm,
+
+/usr/lib/i386-linux-gnu/libpangocairo-1.0.so.0 r,
+/usr/lib/i386-linux-gnu/libpangocairo-1.0.so.0.3600.8 rm,
+
+/usr/lib/i386-linux-gnu/gconv/{,*.so} rm,
+
+/usr/lib/i386-linux-gnu/libgtk-x11-2.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgtk-x11-2.0.so.0.2400.28 rm,
+
+/usr/lib/i386-linux-gnu/libgdk-x11-2.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgdk-x11-2.0.so.0.2400.28 rm,
+
+/usr/lib/i386-linux-gnu/libgio-2.0.so.0 r,
+/usr/lib/i386-linux-gnu/libgio-2.0.so.0.4600.2 rm,
+
+/usr/lib/i386-linux-gnu/libdbus-glib-1.so.2 r,
+/usr/lib/i386-linux-gnu/libdbus-glib-1.so.2.3.2 rm,
+
+/usr/lib/i386-linux-gnu/libgconf-2.so.4 r,
+/usr/lib/i386-linux-gnu/libgconf-2.so.4.1.5 rm,
 
 /usr/lib/i386-linux-gnu/libxml2.so.2 r,
 /usr/lib/i386-linux-gnu/libxml2.so.2.9.2 rm,
@@ -55,7 +189,7 @@ signal,
 /lib/i386-linux-gnu/libpthread-2.21.so rm,
 
 /usr/lib/i386-linux-gnu/libstdc++.so.6 r,
-/usr/lib/i386-linux-gnu/libstdc++.so.6.0.20 rm,
+/usr/lib/i386-linux-gnu/libstdc++.so.6.0.21 rm,
 
 /lib/i386-linux-gnu/libm.so.6 r,
 /lib/i386-linux-gnu/libm-2.21.so rm,
@@ -69,10 +203,13 @@ signal,
 /usr/lib/i386-linux-gnu/libxcb.so.1.1.0 rm,
 
 /lib/i386-linux-gnu/libdbus-1.so.3 r,
-/lib/i386-linux-gnu/libdbus-1.so.3.8.9 rm,
+/lib/i386-linux-gnu/libdbus-1.so.3.14.3 rm,
 
 /lib/i386-linux-gnu/libz.so.1 r,
 /lib/i386-linux-gnu/libz.so.1.2.8 rm,
+
+/usr/lib/i386-linux-gnu/libxcb-render.so.0 r,
+/usr/lib/i386-linux-gnu/libxcb-render.so.0.0.0 rm,
 
 /usr/lib/i386-linux-gnu/libXrender.so.1 r,
 /usr/lib/i386-linux-gnu/libXrender.so.1.3.0 rm,
@@ -84,28 +221,28 @@ signal,
 /lib/i386-linux-gnu/libpng12.so.0.51.0 rm,
 
 /usr/lib/i386-linux-gnu/libgstapp-1.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgstapp-1.0.so.0.405.0 rm,
+/usr/lib/i386-linux-gnu/libgstapp-1.0.so.0.603.0 rm,
 
 /usr/lib/i386-linux-gnu/libgstpbutils-1.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgstpbutils-1.0.so.0.405.0 rm,
+/usr/lib/i386-linux-gnu/libgstpbutils-1.0.so.0.603.0 rm,
 
 /usr/lib/i386-linux-gnu/libgstvideo-1.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgstvideo-1.0.so.0.405.0 rm,
+/usr/lib/i386-linux-gnu/libgstvideo-1.0.so.0.603.0 rm,
 
 /usr/lib/i386-linux-gnu/libgstaudio-1.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgstaudio-1.0.so.0.405.0 rm,
+/usr/lib/i386-linux-gnu/libgstaudio-1.0.so.0.603.0 rm,
 
 /usr/lib/i386-linux-gnu/libgstbase-1.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgstbase-1.0.so.0.405.0 rm,
+/usr/lib/i386-linux-gnu/libgstbase-1.0.so.0.603.0 rm,
 
 /usr/lib/i386-linux-gnu/libgstreamer-1.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgstreamer-1.0.so.0.405.0 rm,
+/usr/lib/i386-linux-gnu/libgstreamer-1.0.so.0.603.0 rm,
 
 /usr/lib/i386-linux-gnu/libgobject-2.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgobject-2.0.so.0.4400.1 rm,
+/usr/lib/i386-linux-gnu/libgobject-2.0.so.0.4600.2 rm,
 
 /lib/i386-linux-gnu/libglib-2.0.so.0 r,
-/lib/i386-linux-gnu/libglib-2.0.so.0.4400.1 rm,
+/lib/i386-linux-gnu/libglib-2.0.so.0.4600.2 rm,
 
 /usr/lib/i386-linux-gnu/libsqlite3.so.0 r,
 /usr/lib/i386-linux-gnu/libsqlite3.so.0.8.6 rm,
@@ -141,13 +278,13 @@ signal,
 /usr/lib/i386-linux-gnu/libXdmcp.so.6.0.0 rm,
 
 /usr/lib/i386-linux-gnu/liborc-0.4.so.0 r,
-/usr/lib/i386-linux-gnu/liborc-0.4.so.0.22.0 rm,
+/usr/lib/i386-linux-gnu/liborc-0.4.so.0.23.0 rm,
 
 /usr/lib/i386-linux-gnu/libgsttag-1.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgsttag-1.0.so.0.405.0 rm,
+/usr/lib/i386-linux-gnu/libgsttag-1.0.so.0.603.0 rm,
 
 /usr/lib/i386-linux-gnu/libgmodule-2.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgmodule-2.0.so.0.4400.1 rm,
+/usr/lib/i386-linux-gnu/libgmodule-2.0.so.0.4600.2 rm,
 
 /usr/lib/i386-linux-gnu/libffi.so.6 r,
 /usr/lib/i386-linux-gnu/libffi.so.6.0.4 rm,
@@ -216,13 +353,13 @@ signal,
 /usr/lib/i386-linux-gnu/libXrandr.so.2.2.0 rm,
 
 /usr/lib/i386-linux-gnu/libicui18n.so.52 r,
-/usr/lib/i386-linux-gnu/libicui18n.so.52.1 rm,
+/usr/lib/i386-linux-gnu/libicui18n.so.55.1 rm,
 
 /usr/lib/i386-linux-gnu/libicuuc.so.52 r,
-/usr/lib/i386-linux-gnu/libicuuc.so.52.1 rm,
+/usr/lib/i386-linux-gnu/libicuuc.so.55.1 rm,
 
 /usr/lib/i386-linux-gnu/libicudata.so.52 r,
-/usr/lib/i386-linux-gnu/libicudata.so.52.1 rm,
+/usr/lib/i386-linux-gnu/libicudata.so.55.1 rm,
 
 /usr/lib/i386-linux-gnu/libcrypto.so r,
 /usr/lib/i386-linux-gnu/libcrypto.so.1.0.0 rm,
@@ -254,10 +391,10 @@ signal,
 /usr/lib/i386-linux-gnu/libasyncns.so.0.3.1 rm,
 /lib/i386-linux-gnu/libattr.so.1.1.0 rm,
 /lib/i386-linux-gnu/liblzma.so.5.0.0 rm,
-/lib/i386-linux-gnu/libgcrypt.so.20.0.2 rm,
+/lib/i386-linux-gnu/libgcrypt.so.20.0.3 rm,
 /usr/lib/i386-linux-gnu/libFLAC.so.8.3.0 rm,
 /usr/lib/i386-linux-gnu/libvorbisenc.so.2.0.10 rm,
-/lib/i386-linux-gnu/libgpg-error.so.0.13.0 rm,
+/lib/i386-linux-gnu/libgpg-error.so.0.15.0 rm,
 /usr/lib/i386-linux-gnu/libogg.so.0.8.2 rm,
 /usr/lib/i386-linux-gnu/libvorbis.so.0.4.7 rm,
 
@@ -266,7 +403,7 @@ signal,
 /usr/lib/i386-linux-gnu/qt4/plugins/bearer/libqgenericbearer.so rm,
 /usr/lib/i386-linux-gnu/qt4/plugins/bearer/libqnmbearer.so rm,
 
-/usr/share/X11/locale/{,**} r,
+/usr/share/X11/*/{,**} r,
 
 /etc/gai.conf r,
 /etc/passwd r,
@@ -299,8 +436,13 @@ dbus (send)
  bus=session
  path=/org/freedesktop/DBus
  interface=org.freedesktop.DBus
- member={Hello,StartServiceByName}
+ member={Hello,StartServiceByName,GetNameOwner}
  peer=(name=org.freedesktop.DBus),
+
+dbus (send)
+ bus=session
+ interface=org.gtk.vfs.MountTracker
+ member=ListMountableInfo,
 
 /etc/ssl/certs/{,**} r,
 /usr/share/ca-certificates/mozilla/{,**} r,
@@ -320,7 +462,7 @@ dbus (send)
 
 /lib/i386-linux-gnu/libjson-c.so.2.0.0 rm,
 
-/lib/i386-linux-gnu/libsystemd.so.0.6.0 rm,
+/lib/i386-linux-gnu/libsystemd.so.0.10.2 rm,
 /lib/i386-linux-gnu/libcap.so.2.24 rm,
 
 /usr/lib/i386-linux-gnu/libpulse.so.0.18.0 rm,
@@ -360,6 +502,9 @@ owner /home/*/.Xauthority r,
 owner /home/*/.config/Trolltech* rw,
 owner /home/*/.config/Trolltech.conf k,
 owner /home/*/.config/pulse/cookie r,
+owner /home/*/.icons/{,**} r,
+owner /home/*/.gtk*/{,**} rw,
+owner /home/*/.gtkrc-2.0 r,
 owner /home/*/.Skype/{,**} rwk,
 owner /home/*/.Skype/*/main.db rwk,
 owner /home/*/.Skype/*/main.lock k,
@@ -373,5 +518,7 @@ owner /home/*/.Skype/shared_httpfe/queue.db rwk,
 owner /home/*/.Skype/DataRv/offline-storage.data rwk,
 
 owner /tmp/skype-*/{,**} rwk,
+owner /tmp/qt*/{,**} rw,
+owner /tmp/qtsingleapp* rw,
 
 }
