@@ -24,6 +24,8 @@ dbus (send)
   member=EnumerateDevices
   peer=(name=org.freedesktop.UPower),
 
+/usr/share/zoneinfo/{,**} r,
+
 /proc/{,**} r,
 
 /sys/devices/{,**} r,
