@@ -12,11 +12,18 @@
 
 capability mknod,
 
-unix (create, connect, getattr, setopt, shutdown) type=stream addr=none,
+unix (create, connect, getattr, setopt, getopt, shutdown) type=stream addr=none,
 unix (send, receive) type=stream addr=none peer=(addr=@/tmp/dbus-*),
 unix (send, receive) type=stream addr=none peer=(addr=@/tmp/.X11-unix/X0),
 
 signal (send, receive) set=("exists"),
+unix (getopt) type=stream addr=none,
+
+dbus send
+ bus=system
+ interface=/org/freedesktop/DBus
+ member=Hello
+ peer=(name=org.freedesktop.DBus),
 
 owner /run/user/*/pulse/{,{native,pid}} rw,
 /etc/pulse/client.conf r,
