@@ -1097,6 +1097,8 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libstdc++.so.6 r,
 /usr/lib/i386-linux-gnu/libstdc++.so.6.0.21 rm,
 
+/usr/lib/i386-linux-gnu/libc.so rm,
+
 /lib/i386-linux-gnu/libc.so.6 r,
 /lib/i386-linux-gnu/libc-2.21.so rm,
 
