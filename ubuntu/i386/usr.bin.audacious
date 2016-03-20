@@ -17,6 +17,7 @@ unix (send, receive) type=stream addr=none peer=(addr=@/tmp/dbus-*),
 unix (send, receive) type=stream addr=none peer=(addr=@/tmp/.X11-unix/X0),
 
 signal (send, receive) set=("exists"),
+signal (send, receive) set=("kill"),
 unix (getopt) type=stream addr=none,
 
 dbus send
