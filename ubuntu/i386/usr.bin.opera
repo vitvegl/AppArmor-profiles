@@ -24,6 +24,7 @@ unix (send, receive, connect) type=stream addr=none peer=(addr=@/tmp/.X11-unix/X
 unix (send, receive, connect) type=stream addr=none peer=(addr=@/tmp/dbus-*),
 
 signal (send, receive) set=(io,kill,rtmin+0) peer=/usr/bin/opera,
+signal (receive) set=(kill) peer=unconfined,
 
 /etc/ld.so.cache r,
 /etc/localtime r,
