@@ -1,8 +1,10 @@
 /usr/bin/audacious {
 
-/usr/bin/pulseaudio rix,
+/usr/bin/pulseaudio Px,
 
 /etc/ld.so.cache r,
+
+/etc/machine-id r,
 
 /dev/{,u}random r,
 /dev/snd/{controlC0,pcm*} rw,
@@ -58,6 +60,7 @@ owner /home/*/.Xauthority r,
 owner /home/*/.config/user-dirs.dirs r,
 owner /home/*/.config/audacious{,/**} rw,
 owner /home/*/.config/gtk-3.0/{,**} r,
+owner /home/*/.config/pulse/{,**} rw,
 
 /usr/lib/i386-linux-gnu/audacious/{,**} rm,
 
