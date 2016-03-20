@@ -1,6 +1,6 @@
 /usr/bin/skype {
 
-deny capability,
+capability mknod,
 network inet stream,
 network inet6 stream,
 network inet dgram,
@@ -8,6 +8,12 @@ network inet6 dgram,
 network netlink raw,
 network netlink dgram,
 signal,
+
+dbus send
+ bus=system
+ interface=/org/freedesktop/DBus
+ member=Hello
+ peer=(name=/org/freedesktop/DBus),
 
 /etc/ld.so.cache r,
 
@@ -491,7 +497,7 @@ dbus (send)
 
 /tmp/qtsingleapp-*lockfile rwlk,
 
-/dev/video0 rw,
+/dev/video? rw,
 
 owner /run/user/*/pulse/{,**} rw,
 
@@ -502,6 +508,7 @@ owner /home/*/.Xauthority r,
 owner /home/*/.config/Trolltech* rw,
 owner /home/*/.config/Trolltech.conf k,
 owner /home/*/.config/pulse/cookie r,
+owner /home/*/.config/Skype/{,**} rw,
 owner /home/*/.icons/{,**} r,
 owner /home/*/.gtk*/{,**} rw,
 owner /home/*/.gtkrc-2.0 r,
