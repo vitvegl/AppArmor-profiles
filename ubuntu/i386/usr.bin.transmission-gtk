@@ -37,13 +37,6 @@ dbus send
  bus=system
  path=/org/freedesktop/DBus
  interface=org.freedesktop.DBus
- member=Hello
- peer=(name=org.freedesktop.DBus),
-
-dbus send
- bus=system
- path=/org/freedesktop/DBus
- interface=org.freedesktop.DBus
  member=StartServiceByName
  peer=(name=org.freedesktop.DBus),
 
