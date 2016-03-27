@@ -4,7 +4,7 @@
 
 /usr/bin/dropbox r,
 
-/usr/bin/pulseaudio ixr,
+/usr/bin/pulseaudio Px,
 /usr/bin/python2.7 ixr,
 
 /bin/sh ixr,
