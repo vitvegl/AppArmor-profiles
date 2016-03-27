@@ -26,7 +26,7 @@ owner /tmp/orcexec* rw,
 /run/udev/data/{,**} rw,
 /run/systemd/users/{,*} r,
 
-/usr/share/{alsa,pulseaudio}/{,**} r,
+/usr/share/{alsa,applications,pulseaudio}/{,**} r,
 
 /sys/{bus,class}/{,**} r,
 /sys/devices/{,**} r,
