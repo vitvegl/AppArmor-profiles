@@ -70,6 +70,8 @@ signal (send) peer=unconfined,
 /etc/privoxy/* r,
 /etc/privoxy/** r,
 
+/usr/share/doc/privoxy{,**} r,
+
 deny /home{,/} rwklmx,
 deny /home/** rwklmx,
 deny /run{,/} rwklmx,
