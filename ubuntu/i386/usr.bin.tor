@@ -1,0 +1,45 @@
+/usr/bin/tor {
+
+unix create type=stream addr=none,
+
+signal (send, receive) set=("abrt") peer=/usr/bin/tor,
+signal receive set=("kill") peer=unconfined,
+
+network inet stream,
+network inet dgram,
+network netlink raw,
+
+/dev/{,u}random r,
+/dev/tty r,
+
+/proc/{cpuinfo,meminfo,stat} r,
+/proc/sys/kernel/random/uuid r,
+/sys/devices/system/cpu/online r,
+
+/etc/ld.so.cache r,
+/etc/localtime r,
+/etc/resolv.conf r,
+/etc/hosts r,
+/etc/host.conf r,
+/etc/tor/{,**} r,
+
+owner /home/*/.tor/{,**} rwl,
+owner /home/*/.torrc r,
+
+/lib/i386-linux-gnu/lib[mz].so.* rm,
+/lib/i386-linux-gnu/libm*.so rm,
+/usr/lib/i386-linux-gnu/libevent*.so.?{,*} rm,
+/lib/i386-linux-gnu/libssl.so.* rm,
+/lib/i386-linux-gnu/libcrypto.so.* rm,
+/lib/i386-linux-gnu/libsystemd.so.* rm,
+/lib/i386-linux-gnu/libseccomp.so.* rm,
+/lib/i386-linux-gnu/libpthread*.so{.,*} rm,
+/lib/i386-linux-gnu/libc*.so{,.?} rm,
+/lib/i386-linux-gnu/libdl*.so{,.?} rm,
+/lib/i386-linux-gnu/librt*.so{,.?} rm,
+/lib/i386-linux-gnu/liblzma.so.* rm,
+/lib/i386-linux-gnu/libgcrypt.so.* rm,
+/lib/i386-linux-gnu/libgcc_s.so.? rm,
+/lib/i386-linux-gnu/libgpg-error.so.?{,.*} rm,
+
+}
