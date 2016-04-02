@@ -57,8 +57,9 @@ owner /tmp/[0-9]*.tmp rwk,
 
 /usr/lib/i386-linux-gnu/librt.so r,
 /lib/i386-linux-gnu/librt*.so{,.?} rm,
+/lib/i386-linux-gnu/ld*.so{,.?} rm,
 
-/lib/i386-linux-gnu/lib{c,dl,m,nsl,nss_{compat,files,nis},pthread}*.so{,.?} rm,
+/lib/i386-linux-gnu/lib{c,dl,ld,m,nsl,nss_{compat,files,nis},pthread}*.so{,.?} rm,
 /lib/i386-linux-gnu/libz.so* rm,
 
 /usr/lib/i386-linux-gnu/libstdc++.so* rm,
