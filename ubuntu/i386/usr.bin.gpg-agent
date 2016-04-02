@@ -1,0 +1,30 @@
+/usr/bin/gpg-agent {
+
+unix (create) type=stream addr=none,
+
+signal (receive) set=("hup") peer=unconfined,
+signal (receive) set=("kill") peer=unconfined,
+signal (receive) set=("term") peer=unconfined,
+
+/etc/ld.so.cache r,
+
+/dev/null rw,
+
+/usr/bin/gpg Px,
+
+/etc/locale.alias r,
+
+/usr/{lib,share}/locale/{,**} r,
+
+owner /home/*/.gnupg/{,**} r,
+owner /home/*/.gnupg/private-keys-v1.d/{,*} rw,
+
+owner /tmp/gpg-*/{,**} rwk,
+
+/lib/i386-linux-gnu/libc*.so{,.?} rm,
+/lib/i386-linux-gnu/libgcrypt.so.* rm,
+/usr/lib/i386-linux-gnu/libassuan.so.* rm,
+/lib/i386-linux-gnu/libgpg-error.so.* rm,
+/usr/lib/i386-linux-gnu/libpth.so.* rm,
+
+}
