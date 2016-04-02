@@ -4,6 +4,9 @@ unix create type=stream addr=none,
 
 signal (send, receive) set=("abrt") peer=/usr/bin/tor,
 signal receive set=("kill") peer=unconfined,
+signal receive set=("hup") peer=unconfined,
+signal receive set=("term") peer=unconfined,
+signal receive set=("cont") peer=unconfined,
 
 network inet stream,
 network inet dgram,
