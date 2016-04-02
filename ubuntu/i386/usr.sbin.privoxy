@@ -49,8 +49,11 @@ signal (send) peer=unconfined,
 
 /proc/cpuinfo r,
 /proc/*/net/route r,
+/proc/stat r,
 /proc/sys/kernel/ngroups_max r,
 /proc/sys/vm/overcommit_memory r,
+
+/sys/devices/system/cpu/online r,
 
 /dev/null rw,
 
@@ -65,10 +68,7 @@ signal (send) peer=unconfined,
 /etc/passwd r,
 /etc/services r,
 /etc/resolv.conf r,
-/etc/privoxy{,/} r,
-/etc/privoxy/config r,
-/etc/privoxy/* r,
-/etc/privoxy/** r,
+owner /etc/privoxy/{,**} r,
 
 /usr/share/doc/privoxy{,**} r,
 
