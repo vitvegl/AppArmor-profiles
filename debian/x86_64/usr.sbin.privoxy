@@ -11,49 +11,23 @@
 
 /usr/sbin/privoxy mr,
 
-/lib/x86_64-linux-gnu/libc.so.6 r,
-/lib/x86_64-linux-gnu/libc-2.19.so mr,
+/lib/x86_64-linux-gnu/libc*.so{,.?} rm,
 
-/lib/x86_64-linux-gnu/libz.so.1 r,
-/lib/x86_64-linux-gnu/libz.so.1.2.8 mr,
+/lib/x86_64-linux-gnu/libz.so.* rm,
 
-/lib/x86_64-linux-gnu/libnss_files.so.2 r,
-/lib/x86_64-linux-gnu/libnss_files-2.19.so mr,
+/lib/x86_64-linux-gnu/libnss_{compat,dns,files,nis}*.so{,.?} rm,
 
-/lib/x86_64-linux-gnu/libpcre.so.3 r,
-/lib/x86_64-linux-gnu/libpcre.so.3.13.1 mr,
+/lib/x86_64-linux-gnu/libpcre.so.* rm,
 
-/usr/lib/x86_64-linux-gnu/libpcreposix.so.3 r,
-/usr/lib/x86_64-linux-gnu/libpcreposix.so.3.13.1 mr,
+/usr/lib/x86_64-linux-gnu/libpcreposix.so.* rm,
 
-/lib/x86_64-linux-gnu/libpthread.so.0 r,
-/lib/x86_64-linux-gnu/libpthread-2.19.so mr,
+/lib/x86_64-linux-gnu/libpthread*.so{,.?} rm,
 
-/lib/x86_64-linux-gnu/libnss_compat.so.2 r,
-/lib/x86_64-linux-gnu/libnss_compat-2.19.so mr,
+/lib/x86_64-linux-gnu/libnsl*.so{,.?} rm,
 
-/lib/x86_64-linux-gnu/libnss_files.so.2 r,
-/lib/x86_64-linux-gnu/libnss_files-2.19.so mr,
+/lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.? mr,
 
-/lib/x86_64-linux-gnu/libnsl.so.1 r,
-/lib/x86_64-linux-gnu/libnsl-2.19.so rm,
-
-/lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2 mr,
-
-/lib/x86_64-linux-gnu/libnss_dns.so.2 r,
-/lib/x86_64-linux-gnu/libnss_dns-2.19.so mr,
-
-/lib/x86_64-linux-gnu/libresolv.so.2 r,
-/lib/x86_64-linux-gnu/libresolv-2.19.so mr,
-
-/lib/x86_64-linux-gnu/libnsl.so.1 r,
-/lib/x86_64-linux-gnu/libnsl-2.19.so mr,
-
-/lib/x86_64-linux-gnu/libnss_nis.so.2 r,
-/lib/x86_64-linux-gnu/libnss_nis-2.19.so mr,
-
-/lib/x86_64-linux-gnu/libnss_nis.so.2 r,
-/lib/x86_64-linux-gnu/libnss_nis-2.19.so mr,
+/lib/x86_64-linux-gnu/libresolv*.so{,.?} rm,
 
 /proc/*/net/route r,
 /proc/stat r,
