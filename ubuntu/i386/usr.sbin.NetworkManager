@@ -52,7 +52,7 @@
  /etc/nsswitch.conf r,
  /etc/NetworkManager/{,**} rwlk,
  /etc/passwd r,
- /etc/resolv.conf r,
+ /etc/resolv.conf rw,
  /etc/services r,
  /etc/udev/udev.conf r,
 
