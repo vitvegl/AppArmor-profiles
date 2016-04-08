@@ -273,7 +273,8 @@ owner /home/*/Downloads/{,**} rw,
 
 /usr/lib/i386-linux-gnu/libasn1.so.* rm,
 
-/usr/lib/i386-linux-gnu/libhcrypto.so.* rm,
+/lib/i386-linux-gnu/libcrypto.so.* rm,
+/usr/lib/i386-linux-gnu/lib{,h}crypto.so.* rm,
 
 /usr/lib/i386-linux-gnu/libroken.so.* rm,
 
