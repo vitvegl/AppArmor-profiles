@@ -573,9 +573,6 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/i386-linux-gnu/libcairo*.so.* rm,
 /usr/lib/i386-linux-gnu/libpango*.so.* rm,
 
-/usr/lib/i386-linux-gnu/libgdk-x11-2.0.so.0 r,
-/usr/lib/i386-linux-gnu/libgdk-x11-2.0.so.0.2400.28 rm,
-
 /usr/lib/i386-linux-gnu/libgio*.so.* rm,
 
 /usr/lib/i386-linux-gnu/libatk*.so.* rm,
@@ -617,8 +614,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/lib/firefox/liblgpllibs.so rm,
 /usr/lib/firefox/libxul.so rm,
 
-/usr/lib/i386-linux-gnu/libfreetype.so.6 r,
-/usr/lib/i386-linux-gnu/libfreetype.so.6.11.1 rm,
+/usr/lib/i386-linux-gnu/libfreetype.so.* rm,
 /usr/lib/i386-linux-gnu/libfontconfig.so.* rm,
 /usr/lib/i386-linux-gnu/libXrender.so.* rm,
 /usr/lib/i386-linux-gnu/libXext.so.* rm,
