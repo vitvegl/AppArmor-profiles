@@ -61,6 +61,7 @@ owner /home/*/.config/user-dirs.dirs r,
 owner /home/*/.config/audacious{,/**} rw,
 owner /home/*/.config/gtk-?.0/{,**} r,
 owner /home/*/.config/pulse/{,**} rw,
+owner /home/*/.local/share/recently-used* rw,
 
 /usr/lib/i386-linux-gnu/audacious/{,**} rm,
 
@@ -163,6 +164,8 @@ owner /home/*/.config/pulse/{,**} rw,
 /usr/lib/i386-linux-gnu/libxcb-render.so.* rm,
 
 /usr/lib/i386-linux-gnu/libxcb-shm.so.* rm,
+
+/usr/lib/i386-linux-gnu/libjpeg.so.* rm,
 
 /lib/i386-linux-gnu/libpng12.so.* rm,
 
