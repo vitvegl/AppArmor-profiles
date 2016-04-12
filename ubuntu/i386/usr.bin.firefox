@@ -119,6 +119,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /usr/share/hunspell/{,**} r,
 /usr/share/mate/{,**} r,
 /usr/share/mozilla/{,**} r,
+/usr/share/zoneinfo/{,**} r,
 
 # lubuntu-specific
 /etc/xdg/lubuntu/{,**} r,
