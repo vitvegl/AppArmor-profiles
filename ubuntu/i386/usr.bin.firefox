@@ -59,7 +59,7 @@ owner /home/*/.icons/{,**} r,
 owner /home/*/.local/share/recently-used* rw,
 owner /home/*/.Xauthority r,
 owner /home/*/.mozilla/{,**} rw,
-owner /home/*/.gtkrc-?.0 r,
+owner /home/*/.gtkrc-2.0 r,
 owner /home/*/.gtk-bookmarks r,
 
 owner /var/tmp/mozilla*/{,**} rw,
