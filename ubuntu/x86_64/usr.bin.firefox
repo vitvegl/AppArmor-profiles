@@ -101,9 +101,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /etc/locale.alias r,
 
 /usr/lib/firefox/{,**} r,
-/usr/lib/firefox-addons/plugins/{,**} r,
-
-/usr/lib/firefox-addons/extensions/{,**} r,
+/usr/lib/firefox-addons/{,**} r,
 
 /usr/share/glib-?.0/schemas/gschemas.compiled r,
 
@@ -219,6 +217,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 
 /usr/lib/x86_64-linux-gnu/libpulse.so.* rm,
 /usr/lib/x86_64-linux-gnu/alsa-lib/libasound_module_conf_pulse.so rm,
+/usr/lib/x86_64-linux-gnu/alsa-lib/libasound_module_pcm_pulse.so rm,
 /usr/lib/x86_64-linux-gnu/libcanberra-*/libcanberra-alsa.so rm,
 /usr/lib/x86_64-linux-gnu/libcanberra-*/libcanberra-pulse.so rm,
 
