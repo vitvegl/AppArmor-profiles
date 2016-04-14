@@ -18,6 +18,7 @@
  signal (receive, send) set=("abrt") peer=/usr/sbin/NetworkManager,
  signal (receive) set=("kill") peer=unconfined,
  signal (receive) set=("term") peer=unconfined,
+ signal (receive) set=("exists") peer=unconfined,
 
  dbus,
 
@@ -74,7 +75,7 @@
  /var/lib/NetworkManager/{,**} rwkl,
 
  /usr/sbin/NetworkManager r,
- /sbin/dhclient rix,
+ /sbin/dhclient Px,
  /usr/lib/NetworkManager/nm-dhcp-helper Px,
 
  /run/dbus/system_bus_socket rw,
