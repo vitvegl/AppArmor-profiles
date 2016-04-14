@@ -75,6 +75,9 @@ deny /tmp/tmux*/{,**} rw,
 deny /tmp/systemd*/{,**} rwklmx,
 deny /tmp/ssh*/{,**} rwklmx,
 
+### Selenium
+owner /tmp/webdriver-profile*/{,**} rwl,
+
 /etc/ld.so.cache r,
 
 /etc/group r,
