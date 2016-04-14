@@ -6,6 +6,7 @@
 network,
 capability mknod,
 
+signal (send, receive) set=("exists") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
 signal (send) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
 signal (receive) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
 
@@ -127,9 +128,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 /etc/locale.alias r,
 
 /usr/lib/firefox/{,**} r,
-/usr/lib/firefox-addons/plugins/{,**} r,
-
-/usr/lib/firefox-addons/extensions/{,**} r,
+/usr/lib/firefox-addons/{,**} r,
 
 /usr/lib/i386-linux-gnu/gtk-?.0/*/immodules.cache r,
 /usr/lib/i386-linux-gnu/gtk-?.0/*/immodules/im-am-et.so rm,
@@ -394,6 +393,7 @@ deny /tmp/ssh*/{,**} rwklmx,
 
 /usr/lib/i386-linux-gnu/libpulse.so.* rm,
 /usr/lib/i386-linux-gnu/alsa-lib/libasound_module_conf_pulse.so rm,
+/usr/lib/i386-linux-gnu/alsa-lib/libasound_module_pcm_pulse.so rm,
 /usr/lib/i386-linux-gnu/libcanberra-0.?0/libcanberra-alsa.so rm,
 /usr/lib/i386-linux-gnu/libcanberra-0.?0/libcanberra-pulse.so rm,
 
