@@ -1,0 +1,58 @@
+/usr/bin/mongo{,*} {
+
+ capability mknod,
+
+ network inet stream,
+
+ unix (create, setopt) type=stream addr=none,
+
+ signal (receive) set=("kill", "cont", "term") peer=unconfined,
+ #signal (receive) set=("cont") peer=unconfined,
+ #signal (receive) set=("term") peer=unconfined,
+ signal (send, receive) set=("abrt") peer=/usr/bin/mongo*,
+
+ /etc/ld.so.cache r,
+
+ /etc/localtime r,
+ /etc/lsb-release r,
+
+ /dev/urandom r,
+
+ /proc/cpuinfo r,
+ /proc/{meminfo,version{,_signature}} r,
+ /proc/sys/vm/overcommit_memory r,
+ /proc/sys/vm/zone_reclaim_mode r,
+
+ owner /proc/*/auxv r,
+ owner /proc/*/stat r,
+
+ /sys/devices/pci*/*/ata?/**/block/sd?/queue/read_ahead_kb r,
+
+ /lib/x86_64-linux-gnu/libgcc_s.so.? rm,
+ /lib/x86_64-linux-gnu/lib{c,dl,m,pthread,rt}*.so{,.?} rm,
+ /usr/lib/x86_64-linux-gnu/libstdc++.so.* rm,
+ /usr/lib/libtcmalloc.so.* rm,
+
+ /usr/lib/x86_64-linux-gnu/libboost_{filesystem,program_options}.so.* rm,
+ /usr/lib/x86_64-linux-gnu/libboost_{thread,system}.so.* rm,
+
+ /usr/lib/libv8.so.* rm,
+ /usr/lib/x86_64-linux-gnu/libyaml-cpp.so.* rm,
+ /usr/lib/x86_64-linux-gnu/libpcrecpp.so.* rm,
+ /lib/x86_64-linux-gnu/libpcre.so.* rm,
+ /usr/lib/x86_64-linux-gnu/libsnappy.so.* rm,
+ /lib/x86_64-linux-gnu/lib{crypto,ssl}.so.* rm,
+ /usr/lib/x86_64-linux-gnu/libunwind.so.* rm,
+ /lib/x86_64-linux-gnu/liblzma.so.* rm,
+
+ /etc/mongodb.conf r,
+
+ /var/lib/mongodb/{,**} rw,
+ owner /var/log/mongodb/{,**} rw,
+ owner /tmp/mongodb-*.sock rw,
+
+ owner /home/*/.mongorc.js rw,
+ owner /home/*/.dbshell rw,
+ owner /home/*/dump/{,**} rwkl,
+
+}
