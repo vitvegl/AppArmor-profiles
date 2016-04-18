@@ -1,0 +1,412 @@
+/usr/bin/skype {
+
+capability mknod,
+network inet stream,
+network inet6 stream,
+network inet dgram,
+network inet6 dgram,
+network netlink raw,
+network netlink dgram,
+signal,
+
+dbus send
+ bus=system
+ interface=/org/freedesktop/DBus
+ member=Hello
+ peer=(name=/org/freedesktop/DBus),
+
+/etc/ld.so.cache r,
+
+/etc/fonts/{,**} r,
+/etc/pulse/{,**} r,
+
+/proc/filesystems r,
+/proc/**/mounts r,
+/proc/*/fd/{,**} r,
+/proc/*/cmdline r,
+
+/etc/xdg/Trolltech.conf r,
+/usr/local/share/fonts/{,**} r,
+/usr/share/{font*,mime,pixmaps,poppler,themes}/{,**} r,
+
+/run/dbus/system_bus_socket rw,
+
+/sys/devices/**/id{Product,Vendor} r,
+/sys/devices/** r,
+
+/sys/class/power_supply/ r,
+
+/usr/lib/{i386,x86_64}-linux-gnu/qt4/plugins/imageformats/{,**} rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libv4l[12].so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libv4lconvert.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libv4l/{,**} rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/liblcms2.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libjbig.so.? rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libmng.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libtiff.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libfcitx-{gclient,utils}.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libcroco*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libxkbcommon.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libssl.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libudev.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/librsvg*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/gvfs/{,**} rm,
+/usr/lib/{i386,x86_64}-linux-gnu/gdk-pixbuf-?.0/{,**} rm,
+/usr/lib/{i386,x86_64}-linux-gnu/gtk-?.0/{,**} rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/gio/modules/{,**} rm,
+
+/lib/{i386,x86_64}-linux-gnu/libselinux.so.? rm,
+
+/lib/{i386,x86_64}-linux-gnu/libcrypto.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libdatrie.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libgraphite*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libthai.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libharfbuzz.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libxcb-shm.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libpixman*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXcomposite.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libpango*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libgdk_pixbuf*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libcairo.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libatk*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/mesa/libGL.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libpango*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/gconv/{,*.so} rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libg[dt]k-x11*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libgio*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libdbus-glib*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libgconf-?.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libxml2.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libxslt.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXv.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXss.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/lib{dl,rt}*.so{,.?} rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libX11.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXext.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libQtDBus.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libQtWebKit.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libQtXml.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libQtGui.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libQtNetwork.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libQtCore.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libpthread*.so{,.?} rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libstdc++.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libm*.so{,.?} rm,
+
+/lib/{i386,x86_64}-linux-gnu/libgcc_s.so.? rm,
+
+/lib/{i386,x86_64}-linux-gnu/libc*.so{,.?} rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libxcb.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libdbus*.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libz.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libxcb-render.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXrender.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libjpeg.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libpng12.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libgstapp*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libgstpbutils*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libgstvideo*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libgstaudio*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libgstbase*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libgstreamer*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libgobject*.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libglib*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libsqlite3.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libfontconfig.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libQtXmlPatterns.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libQtOpenGL.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/mesa/libGL.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libaudio.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libfreetype.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libSM.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libICE.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXau.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXdmcp.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/liborc*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libgsttag*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libgmodule*.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libffi.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libpcre.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libexpat.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libglapi.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXdamage.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXfixes.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libX11-xcb.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libxcb-glx.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libxcb-dri[23].so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libxcb-{present,sync}.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libxshmfence.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXxf86vm.so.* r,
+/usr/lib/{i386,x86_64}-linux-gnu/libXxf86vm.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libdrm.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXt.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libuuid.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/qt4/plugins/inputmethods/ r,
+/usr/lib/{i386,x86_64}-linux-gnu/qt4/plugins/inputmethods/libqimsw-multi.so r,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXi.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXcursor.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXinerama.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXrandr.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libicui18n.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libicuuc.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libicudata.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libcrypto.so* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libresolv*.so{,.?} rm,
+
+/lib/{i386,x86_64}-linux-gnu/libnss_{compat,dns,files,nis}*.so{,.?} rm,
+
+/lib/{i386,x86_64}-linux-gnu/libnsl*.so{,.?} rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libXtst.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libwrap.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libsndfile.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libasyncns.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libattr.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/liblzma.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libgcrypt.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libFLAC.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libvorbisenc.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libgpg-error.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libogg.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libvorbis.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/qt4/plugins/bearer/{,**} r,
+/usr/lib/{i386,x86_64}-linux-gnu/qt4/plugins/bearer/libqconnmanbearer.so rm,
+/usr/lib/{i386,x86_64}-linux-gnu/qt4/plugins/bearer/libqgenericbearer.so rm,
+/usr/lib/{i386,x86_64}-linux-gnu/qt4/plugins/bearer/libqnmbearer.so rm,
+
+/usr/share/X11/*/{,**} r,
+
+/etc/gai.conf r,
+/etc/passwd r,
+/etc/nsswitch.conf r,
+/etc/host.conf r,
+/etc/hosts r,
+/etc/localtime r,
+/etc/resolv.conf r,
+/dev/urandom r,
+
+/etc/pulse/client.conf r,
+/dev/shm/pulse-shm* rw,
+
+/etc/machine-id r,
+/var/lib/dbus/machine-id r,
+
+unix (connect, receive, send)
+ type=stream
+ peer=(addr=@/tmp/dbus-*),
+
+unix (create, listen, accept, connect, send, receive, shutdown, setopt, getopt, getattr)
+ type=stream
+ addr=none,
+
+unix create
+ type=dgram
+ addr=none,
+
+dbus (send)
+ bus=session
+ path=/org/freedesktop/DBus
+ interface=org.freedesktop.DBus
+ member={Hello,StartServiceByName,GetNameOwner}
+ peer=(name=org.freedesktop.DBus),
+
+dbus (send)
+ bus=session
+ interface=org.gtk.vfs.MountTracker
+ member=ListMountableInfo,
+
+/etc/ssl/certs/{,**} r,
+/usr/share/ca-certificates/mozilla/{,**} r,
+
+/etc/fonts/fonts.conf r,
+/usr/share/{icons,fonts}/{,**} r,
+/var/cache/fontconfig/{,**} r,
+/usr/lib/{i386,x86_64}-linux-gnu/gconv/gconv-modules{,.cache} r,
+/usr/share/icons/hicolor/index.theme k,
+
+/usr/lib/{i386,x86_64}-linux-gnu/qt4/plugins/imageformats/libqgif.so rm,
+/usr/lib/{i386,x86_64}-linux-gnu/qt4/plugins/imageformats/libqico.so rm,
+/usr/lib/{i386,x86_64}-linux-gnu/qt4/plugins/imageformats/libqjpeg.so rm,
+/usr/lib/{i386,x86_64}-linux-gnu/qt4/plugins/imageformats/libqmng.so rm,
+/usr/lib/{i386,x86_64}-linux-gnu/qt4/plugins/imageformats/libqtga.so rm,
+/usr/lib/{i386,x86_64}-linux-gnu/qt4/plugins/imageformats/libqtiff.so rm,
+
+/lib/{i386,x86_64}-linux-gnu/libjson-c.so.* rm,
+
+/lib/{i386,x86_64}-linux-gnu/libsystemd.so.* rm,
+/lib/{i386,x86_64}-linux-gnu/libcap.so.* rm,
+
+/usr/lib/{i386,x86_64}-linux-gnu/libpulse.so.* rm,
+/usr/lib/{i386,x86_64}-linux-gnu/pulseaudio/libpulsecommon-?.0.so rm,
+
+/usr/share/locale/{,**} r,
+/usr/lib/locale/locale-archive r,
+/usr/share/locale/locale.alias r,
+/etc/locale.alias r,
+
+/usr/lib/{i386,x86_64}-linux-gnu/gconv/*.so rm,
+
+/dev/{,**} r,
+/proc/cpuinfo r,
+/proc/meminfo r,
+/proc/sys/vm/overcommit_memory r,
+/proc/*/maps r,
+/proc/*/net/{arp,dev,route} r,
+/proc/stat r,
+/proc/sys/kernel/os{type,release} r,
+/sys/devices/system/cpu/{,**} r,
+#/sys/devices/system/cpu/online r,
+/sys/class/power_supply r,
+
+/usr/share/skype/{,**} r,
+
+/tmp/qtsingleapp-*lockfile rwlk,
+
+/dev/video? rw,
+
+owner /run/user/*/pulse/{,**} rw,
+
+deny /home/*/.mozilla/{,**} rwklmx,
+
+owner /home/*/.ICEauthority r,
+owner /home/*/.Xauthority r,
+owner /home/*/.cache/fontconfig*{,**} rwkl,
+owner /home/*/.config/Trolltech* rw,
+owner /home/*/.config/Trolltech.conf k,
+owner /home/*/.config/pulse/cookie r,
+owner /home/*/.config/Skype/{,**} rw,
+owner /home/*/.icons/{,**} r,
+owner /home/*/.gtk*/{,**} rw,
+owner /home/*/.gtkrc-2.0 r,
+owner /home/*/.Skype/{,**} rwk,
+owner /home/*/.Skype/*/main.db rwk,
+owner /home/*/.Skype/*/main.lock k,
+owner /home/*/.Skype/shared.lck k,
+owner /home/*/.Skype/shared_dynco/dc.lock k,
+owner /home/*/.Skype/shared_dynco/dc.db rwk,
+owner /home/*/.Skype/shared_dynco/dc.db-journal rwk,
+owner /home/*/.Skype/*/config.lck rwk,
+owner /home/*/.Skype/shared_httpfe/queue.lock rwk,
+owner /home/*/.Skype/shared_httpfe/queue.db rwk,
+owner /home/*/.Skype/DataRv/offline-storage.data rwk,
+
+owner /tmp/skype-*/{,**} rwk,
+owner /tmp/qt*/{,**} rw,
+owner /tmp/qtsingleapp* rw,
+
+}
