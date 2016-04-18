@@ -19,6 +19,8 @@
  signal (receive) set=("kill") peer=unconfined,
  signal (receive) set=("term") peer=unconfined,
  signal (receive) set=("exists") peer=unconfined,
+ signal (receive) set=("cont") peer=unconfined,
+ signal (send) set=("term") peer=/sbin/dhclient,
 
  dbus,
 
@@ -35,7 +37,18 @@
  /proc/{cpuinfo,stat} r,
  /proc/*/{mounts,stat} r,
  /proc/{filesystems,mounts} r,
+ /proc/sys/vm/overcommit_memory r,
  /proc/sys/net/ipv[46]/conf/*/mtu rw,
+ /proc/sys/net/ipv6/conf/*/accept_ra rw,
+ /proc/sys/net/ipv6/conf/*/use_tempaddr rw,
+ /proc/sys/net/ipv6/conf/*/disable_ipv6 rw,
+ /proc/sys/net/ipv6/conf/*/hop_limit rw,
+ /proc/sys/net/ipv6/conf/*/accept_ra_defrtr rw,
+ /proc/sys/net/ipv6/conf/*/accept_ra_pinfo rw,
+ /proc/sys/net/ipv6/conf/*/accept_ra_rtr_pref rw,
+ /proc/sys/net/ipv6/conf/*/max_addresses r,
+ /proc/sys/net/ipv6/conf/*/router_solicitations r,
+ /proc/sys/net/ipv6/conf/*/router_solicitation_interval r,
 
  /sys/{bus,class}/{,**} r,
  /sys/devices/system/cpu/online r,
