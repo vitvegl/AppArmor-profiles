@@ -1,0 +1,40 @@
+/usr/bin/redis-server {
+
+ capability mknod,
+
+ signal (receive) set=("kill") peer=unconfined,
+ signal (receive) set=("cont") peer=unconfined,
+ signal (receive) set=("term") peer=unconfined,
+
+ network inet stream,
+
+ /etc/ld.so.cache r,
+
+ /usr/lib/locale/{,**} r,
+ /etc/locale.alias r,
+
+ /dev/null rw,
+ /dev/urandom rw,
+
+ /proc/cpuinfo r,
+ /proc/stat r,
+ /proc/sys/net/core/somaxconn r,
+ /proc/sys/vm/overcommit_memory r,
+ /sys/devices/system/cpu/online r,
+ /sys/kernel/mm/transparent_hugepage/enabled r,
+
+ owner /proc/*/smaps r,
+ owner /proc/*/stat r,
+ owner /run/redis/redis-server.pid rw,
+
+ /lib/x86_64-linux-gnu/lib{c,m,pthread}*.so{,.?} rm,
+ /usr/lib/x86_64-linux-gnu/libjemalloc.so.? rm,
+
+ /etc/localtime r,
+ /etc/redis/{,**} r,
+
+ /var/lib/redis/{,**} rw,
+ /var/log/redis/ r,
+ /var/log/redis/redis-server.log w,
+
+}
