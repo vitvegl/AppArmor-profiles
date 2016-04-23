@@ -144,5 +144,7 @@
  /usr/lib/i386-linux-gnu/libmm-glib.so.* rm,
  /lib/i386-linux-gnu/lib{dns,irs,isc}-export.so.* rm,
  /lib/i386-linux-gnu/libisccfg-export.so.* rm,
+
+ /lib/firmware/{,**} r,
  
 }
