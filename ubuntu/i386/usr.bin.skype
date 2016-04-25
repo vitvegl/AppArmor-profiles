@@ -404,6 +404,10 @@ owner /home/*/.Skype/shared_httpfe/queue.lock rwk,
 owner /home/*/.Skype/shared_httpfe/queue.db rwk,
 owner /home/*/.Skype/DataRv/offline-storage.data rwk,
 
+/ r,
+/tmp/ r,
+/tmp/Downloads/{,**} rw,
+
 owner /tmp/skype-*/{,**} rwk,
 owner /tmp/qt*/{,**} rw,
 owner /tmp/qtsingleapp* rw,
