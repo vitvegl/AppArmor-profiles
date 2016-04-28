@@ -2,6 +2,8 @@
 
  #include <abstractions/gconv-amd64>
 
+ capability audit_write,
+ capability kill,
  capability setuid,
  capability setgid,
  capability dac_read_search,
@@ -9,6 +11,8 @@
  capability net_admin,
  capability net_raw,
  capability net_bind_service,
+ capability sys_chroot,
+ capability sys_module,
 
  unix (create) type=dgram addr=none,
  unix (create, getattr) type=stream addr=none,
@@ -21,6 +25,9 @@
  signal (receive) set=("exists") peer=unconfined,
  signal (receive) set=("cont") peer=unconfined,
  signal (send) set=("term") peer=/sbin/dhclient,
+ signal (send, receive) set=("kill") peer=/usr/sbin/dnsmasq,
+
+ ptrace (trace) peer=/sbin/dhclient,
 
  dbus,
 
@@ -90,19 +97,22 @@
 
  /usr/sbin/NetworkManager r,
  /sbin/dhclient Px,
+ /usr/sbin/dnsmasq Px,
  /usr/lib/NetworkManager/nm-dhcp-helper Px,
 
- /run/dbus/system_bus_socket rw,
+ /run/dhclient-*.pid rw,
+ /run/dbus/system_bus_socket rwkl,
  /run/network/ifstate{,.lo} r,
  /run/systemd/users/{,**} r,
  /run/systemd/journal/dev-log w,
+ /run/systemd/journal/socket rw,
  /run/udev/{,**} r,
  /run/NetworkManager/{,*} rwkl,
  /run/sendsigs.omit.d/network-manager*.pid rw,
 
  /lib/x86_64-linux-gnu/libuuid.so.* rm,
  /lib/x86_64-linux-gnu/libgcrypt.so.* rm,
- /usr/lib/x86_64-linux-gnu/libgnutls-deb0.so.* rm,
+ /usr/lib/x86_64-linux-gnu/libgnutls{,-deb0}.so.* rm,
  /usr/lib/x86_64-linux-gnu/libdbus-glib-1.so.* rm,
  /lib/x86_64-linux-gnu/libdbus-1.so.* rm,
  /usr/lib/x86_64-linux-gnu/libgmodule-*.so.* rm,
@@ -144,7 +154,6 @@
  /usr/lib/x86_64-linux-gnu/libmm-glib.so.* rm,
  /lib/x86_64-linux-gnu/lib{dns,irs,isc}-export.so.* rm,
  /lib/x86_64-linux-gnu/libisccfg-export.so.* rm,
-
- /lib/firmware/{,**} r,
+ /usr/lib/x86_64-linux-gnu/libidn.so.* rm,
  
 }
