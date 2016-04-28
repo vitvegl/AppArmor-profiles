@@ -1,0 +1,629 @@
+/usr/lib/firefox/firefox{,*[^s][^h]} {
+
+#include <abstractions/gconv-i386>
+
+#dbus,
+network,
+capability mknod,
+
+signal (send, receive) set=("exists") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
+signal (send) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
+signal (receive) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
+
+signal (send) set=("exists") peer="/usr/bin/pulseaudio",
+signal (send) set=("exists") peer=unconfined,
+
+signal (send) set=("kill") peer=unconfined,
+signal (receive) set=("kill") peer=unconfined,
+
+dbus (send)
+  bus=system
+  path=/org/freedesktop/DBus
+  interface=org.freedesktop.DBus
+  member=Hello,AddMatch,RemoveMatch,GetNameOwner
+  peer=(name=org.freedesktop.DBus),
+
+dbus (send)
+  bus=system
+  path=/org/freedesktop/UPower
+  interface=org.freedesktop.UPower
+  member=EnumerateDevices
+  peer=(name=org.freedesktop.UPower),
+
+/proc/{,**} r,
+
+/sys/devices/{,**} r,
+/sys/devices/system/cpu/online r,
+
+owner /run/user/*/pulse/{,*} rw,
+owner /run/user/*/dconf/{,*} rw,
+
+deny /etc/passwd r,
+
+deny /tmp/[a-z]*.exe rw,
+deny /tmp/_[a-z]*.exe rw,
+owner /tmp/[a-z]* rw,
+owner /tmp/_[a-z]* rw,
+owner /tmp/[a-z]*.tar{,.*} rw,
+owner /tmp/mozilla_mozillaUser0/{,**} rw,
+owner /home/*/Downloads/{,**} rw,
+owner /home/*/.cache/event-sound-cache.tdb.*.i686-pc-linux-gnu rw,
+owner /home/*/.cache/mozilla/{,**} rwlk,
+owner /home/*/.cache/gstreamer-*/{,**} rw,
+owner /home/*/.config/dconf/user rw,
+owner /home/*/.config/mozilla/{,**} rwlk,
+owner /home/*/.config/user-dirs.dirs r,
+owner /home/*/.config/gtk-*/{,**} r,
+owner /home/*/.config/mimeapps.list r,
+owner /home/*/.config/pulse/{,**} r,
+owner /home/*/.icons/{,**} r,
+owner /home/*/.local/share/recently-used* rw,
+owner /home/*/.Xauthority r,
+owner /home/*/.mozilla/{,**} rw,
+owner /home/*/.gtkrc-?.0 r,
+owner /home/*/.gtk-bookmarks r,
+
+owner /var/tmp/mozilla*/{,**} rw,
+owner /var/tmp/[a-z]*\\_\\*/{,**} rw,
+owner /var/tmp/{,**} rw,
+/var/tmp/ r,
+/tmp/ r,
+deny /tmp/.[a-z]*/{,**} rwklmx,
+deny /tmp/.[A-Z]*/{,**} rwklmx,
+deny /tmp/.[0-9]*/{,**} rwlkmx,
+deny /tmp/tmux*/{,**} rw,
+deny /tmp/systemd*/{,**} rwklmx,
+deny /tmp/ssh*/{,**} rwklmx,
+
+### Selenium
+owner /tmp/webdriver-profile*/{,**} rwl,
+
+/etc/ld.so.cache r,
+
+/etc/group r,
+
+/dev/null rw,
+/dev/shm/ r,
+/dev/shm/pulse-shm* rw,
+/dev/urandom r,
+
+/dev/snd/controlC0 rw,
+/dev/snd/pcm* rw,
+/dev/snd/timer r,
+
+/run/dbus/system_bus_socket rw,
+/run/udev/data/+pci* r,
+
+/var/cache/fontconfig/{,**} r,
+/usr/share/glib-?.0/schemas/gschemas.compiled r,
+/usr/share/libthai/* r,
+
+/dev/dri/card0 rw,
+/sys/devices/pci*/**/uevent r,
+
+/etc/drirc r,
+/etc/fonts/{,**} r,
+/etc/gnome/defaults.list r,
+/etc/hosts r,
+/etc/host.conf r,
+/etc/localtime r,
+/etc/lsb-release r,
+/etc/machine-id r,
+/etc/mailcap r,
+/etc/mime.types r,
+/etc/nsswitch.conf r,
+/etc/pulse/client.conf r,
+/etc/resolv.conf r,
+/etc/udev/udev.conf r,
+
+/usr/share/applications/{,**} r,
+/usr/share/fonts/{,**} r,
+/usr/share/fontconfig/{,**} r,
+/usr/share/fonts-droid/{,**} r,
+/usr/share/hunspell/{,**} r,
+/usr/share/mate/{,**} r,
+/usr/share/mozilla/{,**} r,
+/usr/share/zoneinfo/{,**} r,
+
+# lubuntu-specific
+/etc/xdg/lubuntu/{,**} r,
+
+/etc/locale.alias r,
+
+/usr/lib/firefox/{,**} r,
+/usr/lib/firefox-addons/{,**} r,
+
+/usr/lib/i386-linux-gnu/gtk-?.0/*/immodules.cache r,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/immodules/im-am-et.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/immodules/im-cedilla.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/immodules/im-cyrillic-translit.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/immodules/im-inuktitut.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/immodules/im-ipa.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/immodules/im-multipress.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/immodules/im-thai.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/immodules/im-ti-er.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/immodules/im-ti-et.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/immodules/im-viqr.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/immodules/im-xim.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/immodules/im-fcitx.so rm,
+
+/lib/i386-linux-gnu/libnss_{compat,nis}*.so{,.?} rm,
+
+/usr/lib/i386-linux-gnu/x265-10bit/libx265.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgomp.so.* rm,
+
+/usr/lib/i386-linux-gnu/libnuma.so.* rm,
+
+/usr/lib/i386-linux-gnu/libsoxr.so.* rm,
+
+/usr/lib/i386-linux-gnu/libcrystalhd.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgsm.so.* rm,
+
+/usr/lib/i386-linux-gnu/libopenjpeg.so.* rm,
+
+/usr/lib/i386-linux-gnu/libmp3lame.so.* rm,
+
+/usr/lib/i386-linux-gnu/libshine.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgudev*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libx264.so.* rm,
+/usr/lib/i386-linux-gnu/i686/sse2/libx264.so.* rm,
+
+/usr/lib/i386-linux-gnu/libwebp.so.* rm,
+
+/usr/lib/i386-linux-gnu/libv4lconvert.so.* rm,
+
+/usr/lib/i386-linux-gnu/libv4l/v4l2convert.so rm,
+/usr/lib/i386-linux-gnu/libv4l/v4l1compat.so rm,
+
+/usr/lib/i386-linux-gnu/libtwolame.so.* rm,
+
+/usr/lib/i386-linux-gnu/libschroedinger*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libopus.so.* rm,
+
+/usr/lib/i386-linux-gnu/libfcitx-{gclient,utils}.so.* rm,
+
+/usr/lib/i386-linux-gnu/libwayland-client.so.* rm,
+/usr/lib/i386-linux-gnu/libwayland-cursor.so.* rm,
+/usr/lib/i386-linux-gnu/libwayland-egl.so.* rm,
+
+/usr/lib/i386-linux-gnu/libmirclient.so.? rm,
+/usr/lib/i386-linux-gnu/libmircommon.so.? rm,
+/usr/lib/i386-linux-gnu/libmirprotobuf.so.? rm,
+
+/usr/lib/i386-linux-gnu/libboost_{filesystem,system}.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgst{allocators,app,audio,base,basecamerabinsrc,fft,net,pbutils}*.so.* rm,
+/usr/lib/i386-linux-gnu/libgst{photography,reamer,riff,rtp,rtsp,sdp,tag,video}*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libavcodec-ffmpeg.so.* rm,
+
+/usr/lib/i386-linux-gnu/libavutil-ffmpeg.so.* rm,
+
+/usr/lib/i386-linux-gnu/gstreamer-1.0/{,**} rm,
+
+/usr/lib/i386-linux-gnu/libfarstream*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libshout.so.* rm,
+
+/usr/lib/i386-linux-gnu/libavc1394.so.* rm,
+
+/usr/lib/i386-linux-gnu/libjpeg.so.* rm,
+
+/usr/lib/i386-linux-gnu/libaa.so.* rm,
+/usr/lib/i386-linux-gnu/libva.so.* rm,
+/usr/lib/i386-linux-gnu/libx265.so.* rm,
+
+/usr/lib/i386-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper rm,
+/usr/lib/i386-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner rm,
+
+/usr/lib/i386-linux-gnu/libswresample-ffmpeg.so.* rm,
+
+/usr/lib/i386-linux-gnu/libprotobuf-lite.so.* rm,
+
+/usr/lib/libgssdp*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libspeexdsp.so.* rm,
+/usr/lib/i386-linux-gnu/sse2/libspeex.so.* rm,
+
+/usr/lib/i386-linux-gnu/libzvbi.so.* rm,
+
+/usr/lib/i386-linux-gnu/libsqlite3.so.* rm,
+
+/lib/i386-linux-gnu/libslang.so.* rm,
+
+/usr/lib/i386-linux-gnu/libcdda_paranoia.so.* rm,
+
+/usr/lib/i386-linux-gnu/libiec61883.so.* rm,
+
+/usr/lib/i386-linux-gnu/libtheoradec.so.* rm,
+
+/usr/lib/i386-linux-gnu/gtk-?.0/*/printbackends/libprintbackend-cups.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/printbackends/libprintbackend-file.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/printbackends/libprintbackend-lpr.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/printbackends/libprintbackend-test.so rm,
+
+/usr/lib/i386-linux-gnu/libXss.so.* rm,
+
+/usr/lib/i386-linux-gnu/libdbusmenu-{glib,gtk}.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgconf-?.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgmp.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgpm.so.? rm,
+
+/usr/lib/i386-linux-gnu/libxvidcore.so.* rm,
+
+/usr/lib/i386-linux-gnu/libhogweed.so.* rm,
+
+/usr/lib/i386-linux-gnu/libnettle.so.* rm,
+
+/usr/lib/i386-linux-gnu/libtasn1.so.* rm,
+
+/usr/lib/i386-linux-gnu/libproxy.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgnutls-deb0.so.* rm,
+
+/usr/lib/i386-linux-gnu/libp11-kit.so.* rm,
+
+/usr/lib/i386-linux-gnu/libepoxy.so.* rm,
+
+/usr/lib/i386-linux-gnu/libnice.so.* rm,
+
+/usr/lib/i386-linux-gnu/gvfs/libgvfscommon.so rm,
+
+/usr/lib/i386-linux-gnu/gio/modules/ r,
+/usr/lib/i386-linux-gnu/gio/modules/giomodule.cache r,
+/usr/lib/i386-linux-gnu/gio/modules/libdconfsettings.so rm,
+/usr/lib/i386-linux-gnu/gio/modules/libgiognomeproxy.so rm,
+/usr/lib/i386-linux-gnu/gio/modules/libgiognutls.so rm,
+/usr/lib/i386-linux-gnu/gio/modules/libgiolibproxy.so rm,
+/usr/lib/i386-linux-gnu/gio/modules/libgioremote-volume-monitor.so rm,
+/usr/lib/i386-linux-gnu/gio/modules/libgvfsdbus.so rm,
+
+/usr/lib/i386-linux-gnu/libpciaccess.so.* rm,
+
+/usr/lib/i386-linux-gnu/libdrm_intel.so.* rm,
+
+/lib/i386-linux-gnu/libudev.so.* rm,
+
+/usr/lib/i386-linux-gnu/dri/i965_dri.so rm,
+
+/usr/lib/i386-linux-gnu/libicudata.so.* rm,
+
+/usr/lib/i386-linux-gnu/libicuuc.so.* rm,
+
+/usr/lib/i386-linux-gnu/libxml2.so.* rm,
+
+/usr/lib/i386-linux-gnu/libcroco*.so.* rm,
+
+/usr/lib/i386-linux-gnu/librsvg-2.so.* rm,
+
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders.cache r,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-ani.so rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-bmp.so rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-gif.so rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-icns.so rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-ico.so rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-jpeg.so rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-png.so rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-pnm.so rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-qtif.so rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-svg.so rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-tga.so rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-tiff.so rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-xbm.so rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-xpm.so rm,
+
+/usr/local/share/fonts/{,**} r,
+/usr/share/alsa/{,**} r,
+/usr/share/fonts/{,**} r,
+/usr/share/icons/{,**} r,
+/usr/share/javascript/{,**} r,
+/usr/share/mime/{,**} r,
+/usr/share/pixmaps/{,**} r,
+/usr/share/poppler/{,**} r,
+/usr/share/sounds/{,**} r,
+/usr/share/X11/{,**} r,
+/usr/share/themes/{,**} r,
+
+/usr/lib/i386-linux-gnu/libspeex.so.* rm,
+
+/usr/lib/i386-linux-gnu/libspeexdsp.so.* rm,
+
+/usr/lib/i386-linux-gnu/liborc*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libvisual*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgupnp-igd*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libjack.so.* rm,
+
+/usr/lib/i386-linux-gnu/libsoup*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libcaca.so.* rm,
+
+/usr/lib/i386-linux-gnu/libtag.so.* rm,
+
+/lib/i386-linux-gnu/libbz2.so.* rm,
+
+/usr/lib/i386-linux-gnu/libtheora.so.* rm,
+
+/usr/lib/i386-linux-gnu/libv4l2.so.* rm,
+
+/usr/lib/i386-linux-gnu/libcdda_interface.so.* rm,
+
+/usr/lib/i386-linux-gnu/libdv.so.* rm,
+
+/usr/lib/i386-linux-gnu/librom1394.so.* rm,
+
+/usr/lib/i386-linux-gnu/libwavpack.so.* rm,
+
+/usr/lib/i386-linux-gnu/libtheoraenc.so.1 r,
+/usr/lib/i386-linux-gnu/libtheoraenc.so.1.1.2 rm,
+
+/usr/lib/i386-linux-gnu/libvpx.so.* rm,
+
+/lib/i386-linux-gnu/libncurses{,w}.so.* rm,
+
+/usr/lib/i386-linux-gnu/libraw1394.so.* rm,
+
+/usr/lib/libgupnp*.so.* rm,
+
+/lib/i386-linux-gnu/libcap.so.* rm,
+
+/usr/bin/pulseaudio Px,
+/usr/lib/libpulsecore-?.0.so rm,
+
+/usr/lib/i386-linux-gnu/libvorbisenc.so.* rm,
+/usr/lib/i386-linux-gnu/libFLAC.so.* rm,
+/lib/i386-linux-gnu/libnsl*.so{,.?} rm,
+/usr/lib/i386-linux-gnu/libasyncns.so.* rm,
+/usr/lib/i386-linux-gnu/libsndfile.so.* rm,
+/lib/i386-linux-gnu/libwrap.so.* rm,
+
+/usr/lib/i386-linux-gnu/pulseaudio/libpulsecommon-?.0.so rm,
+
+/usr/lib/firefox/crashreporter ix,
+/usr/lib/firefox/crashreporter.ini r,
+
+/lib/i386-linux-gnu/libjson-c.so.* rm,
+
+/usr/lib/i386-linux-gnu/libpulse.so.* rm,
+/usr/lib/i386-linux-gnu/alsa-lib/libasound_module_conf_pulse.so rm,
+/usr/lib/i386-linux-gnu/alsa-lib/libasound_module_pcm_pulse.so rm,
+/usr/lib/i386-linux-gnu/libcanberra-0.?0/libcanberra-alsa.so rm,
+/usr/lib/i386-linux-gnu/libcanberra-0.?0/libcanberra-pulse.so rm,
+
+/usr/lib/firefox/defaults/pref/ r,
+/usr/lib/firefox/defaults/pref/channel-prefs.js r,
+/usr/lib/firefox/defaults/pref/vendor-gre.js r,
+
+/usr/lib/firefox/browser/defaults/preferences/ r,
+/usr/lib/firefox/browser/defaults/preferences/syspref.js r,
+/etc/firefox/syspref.js r,
+/usr/lib/firefox/browser/defaults/preferences/vendor-firefox.js r,
+
+/usr/lib/i386-linux-gnu/libtxc_dxtn.so r,
+/etc/alternatives/libtxc-dxtn-i386-linux-gnu r,
+
+/usr/lib/i386-linux-gnu/libtxc_dxtn_s2tc.so.* rm,
+
+/lib/i386-linux-gnu/libbsd.so.* rm,
+
+/lib/i386-linux-gnu/libtinfo.so.* rm,
+
+/usr/lib/i386-linux-gnu/libedit.so.* rm,
+
+/usr/lib/i386-linux-gnu/libLLVM*.so.? rm,
+
+/usr/lib/i386-linux-gnu/libelf*.so{,.?} rm,
+
+/usr/lib/i386-linux-gnu/libdrm_{amdgpu,nouveau,radeon}.so.* rm,
+
+/usr/lib/i386-linux-gnu/gtk-?.0/*/engines/ r,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/engines/libclearlooks.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/engines/libcrux-engine.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/engines/libglide.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/engines/libhcengine.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/engines/libindustrial.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/engines/libmist.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/engines/libmist.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/engines/libmurrine.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/engines/libpixmap.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/engines/libredmond95.so rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/engines/libthinice.so rm,
+
+/usr/lib/i386-linux-gnu/dri/swrast_dri.so rm,
+
+/lib/i386-linux-gnu/libnss_mdns4_minimal.so.? rm,
+
+/lib/i386-linux-gnu/libnss_{dns,files}*.so{,.?} rm,
+
+/usr/lib/firefox/chrome.manifest r,
+/usr/lib/firefox/browser/chrome.manifest r,
+
+/usr/lib/firefox/components/components.manifest r,
+/usr/lib/firefox/browser/components/components.manifest r,
+/usr/lib/firefox/browser/components/libbrowsercomps.so rm,
+/usr/lib/firefox/components/libmozgnome.so rm,
+
+/usr/lib/firefox/omni.ja r,
+/usr/lib/firefox/browser/omni.ja r,
+
+/usr/lib/i386-linux-gnu/libogg.so.* rm,
+
+/usr/lib/i386-linux-gnu/libvorbis.so.* rm,
+
+/usr/lib/i386-linux-gnu/libltdl.so.* rm,
+
+/usr/lib/i386-linux-gnu/libtdb.so.* rm,
+
+/usr/lib/locale/locale-archive r,
+/usr/share/locale/locale.alias r,
+
+/usr/lib/i386-linux-gnu/libvorbisfile.so.* rm,
+
+/usr/lib/i386-linux-gnu/libcanberra{,-gtk}.so.* rm,
+
+/usr/lib/i386-linux-gnu/gtk-?.0/modules/libcanberra-gtk-module.so rm,
+
+/usr/lib/i386-linux-gnu/libgailutil.so.* rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/modules/libgail.so rm,
+
+/usr/lib/i386-linux-gnu/libatspi.so.* rm,
+
+/usr/lib/i386-linux-gnu/libatk-bridge*.so.* rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/modules/libatk-bridge.so rm,
+
+/usr/lib/i386-linux-gnu/libdrm.so.* rm,
+
+/usr/lib/i386-linux-gnu/libXxf86vm.so.* rm,
+
+/usr/lib/i386-linux-gnu/libxshmfence.so.* rm,
+
+/usr/lib/i386-linux-gnu/libxcb-sync.so.* rm,
+
+/usr/lib/i386-linux-gnu/libxcb-present.so.* rm,
+
+/usr/lib/i386-linux-gnu/libxcb-dri[23].so.* rm,
+
+/usr/lib/i386-linux-gnu/libxcb-glx.so.* rm,
+
+/usr/lib/i386-linux-gnu/libxkbcommon.so.* rm,
+
+/usr/lib/i386-linux-gnu/libglapi.so.* rm,
+
+/usr/lib/i386-linux-gnu/mesa/libGL.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgraphite2.so.* rm,
+
+/lib/i386-linux-gnu/libgpg-error.so.* rm,
+
+/lib/i386-linux-gnu/libuuid.so.* rm,
+
+/usr/lib/i386-linux-gnu/libXdmcp.so.* rm,
+
+/usr/lib/i386-linux-gnu/libXau.so.* rm,
+
+/usr/lib/i386-linux-gnu/libdatrie.so.* rm,
+
+/usr/lib/i386-linux-gnu/libharfbuzz.so.* rm,
+
+/lib/i386-linux-gnu/libgcrypt.so.* rm,
+
+/lib/i386-linux-gnu/liblzma.so.* rm,
+
+/usr/lib/i386-linux-gnu/libICE.so.* rm,
+
+/usr/lib/i386-linux-gnu/libSM.so.* rm,
+
+/usr/lib/i386-linux-gnu/libX11-xcb.so.* rm,
+
+/usr/lib/i386-linux-gnu/libxcb-util.so.* rm,
+
+/usr/lib/i386-linux-gnu/libxcb.so.* rm,
+
+/usr/lib/i386-linux-gnu/libxcb-render.so.* rm,
+
+/usr/lib/i386-linux-gnu/libxcb-shm.so.* rm,
+
+/usr/lib/i386-linux-gnu/libpixman-?.so.* rm,
+
+/usr/lib/i386-linux-gnu/libthai.so.* rm,
+
+/usr/lib/i386-linux-gnu/libXcursor.so.* rm,
+
+/usr/lib/i386-linux-gnu/libXrandr.so.* rm,
+
+/usr/lib/i386-linux-gnu/libXi.so.* rm,
+
+/usr/lib/i386-linux-gnu/libXinerama.so.* rm,
+
+/lib/i386-linux-gnu/libresolv*.so{,.?} rm,
+
+/lib/i386-linux-gnu/libselinux.so.? rm,
+
+/usr/lib/i386-linux-gnu/libpango*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgmodule*.so.* rm,
+
+/lib/i386-linux-gnu/libpcre.so.* rm,
+
+/usr/lib/i386-linux-gnu/libffi.so.* rm,
+
+/lib/i386-linux-gnu/libsystemd.so.* rm,
+
+/lib/i386-linux-gnu/libexpat.so.* rm,
+
+/usr/lib/i386-linux-gnu/libpng12.so.? r,
+/lib/i386-linux-gnu/libpng12.so.* rm,
+
+/lib/i386-linux-gnu/libz.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgthread*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libXt.so.* rm,
+
+/usr/lib/i386-linux-gnu/libX11.so.* rm,
+
+/usr/lib/i386-linux-gnu/libstartup-notification-?.so.* rm,
+
+/usr/lib/i386-linux-gnu/libcairo*.so.* rm,
+/usr/lib/i386-linux-gnu/libpango*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgio*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libatk*.so.* rm,
+/usr/lib/i386-linux-gnu/libg[dt]k*.so.* rm,
+
+/lib/i386-linux-gnu/libglib*.so.* rm,
+
+/usr/lib/i386-linux-gnu/libgobject*.so.* rm,
+
+/lib/i386-linux-gnu/libdbus-?.so.* rm,
+
+/usr/lib/i386-linux-gnu/libasound.so.* rm,
+
+/usr/lib/i386-linux-gnu/libdbus-glib-?.so.* rm,
+
+/lib/i386-linux-gnu/libpthread*.so{,.?} rm,
+
+/lib/i386-linux-gnu/libdl*.so{,.?} rm,
+
+/usr/lib/i386-linux-gnu/libstdc++.so.* rm,
+
+/usr/lib/i386-linux-gnu/libc.so rm,
+
+/lib/i386-linux-gnu/libc*.so{,.?} rm,
+/lib/i386-linux-gnu/libm*.so{,.?} rm,
+/lib/i386-linux-gnu/librt*.so{,.?} rm,
+
+/lib/i386-linux-gnu/libgcc_s.so.? rm,
+
+/usr/lib/firefox/dependentlibs.list r,
+/usr/lib/firefox/libnspr?.so rm,
+/usr/lib/firefox/libplc?.so rm,
+/usr/lib/firefox/libplds?.so rm,
+/usr/lib/firefox/libnssutil?.so rm,
+/usr/lib/firefox/libnss?.so rm,
+/usr/lib/firefox/libsmime?.so rm,
+/usr/lib/firefox/libssl?.so rm,
+/usr/lib/firefox/libmozsqlite3.so rm,
+/usr/lib/firefox/liblgpllibs.so rm,
+/usr/lib/firefox/libxul.so rm,
+
+/usr/lib/i386-linux-gnu/libfreetype.so.* rm,
+/usr/lib/i386-linux-gnu/libfontconfig.so.* rm,
+/usr/lib/i386-linux-gnu/libXrender.so.* rm,
+/usr/lib/i386-linux-gnu/libXext.so.* rm,
+/usr/lib/i386-linux-gnu/libXdamage.so.* rm,
+/usr/lib/i386-linux-gnu/libXfixes.so.* rm,
+/usr/lib/i386-linux-gnu/libXcomposite.so.* rm,
+
+}
