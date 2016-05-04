@@ -63,6 +63,8 @@ owner /home/*/.mozilla/{,**} rw,
 owner /home/*/.gtkrc-?.0 r,
 owner /home/*/.gtk-bookmarks r,
 
+owner /tmp/mozilla_*/{,*} rw,
+
 owner /var/tmp/mozilla*/{,**} rw,
 owner /var/tmp/[a-z]*\\_\\*/{,**} rw,
 owner /var/tmp/{,**} rw,
