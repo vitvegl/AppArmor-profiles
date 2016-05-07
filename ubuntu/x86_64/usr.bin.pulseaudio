@@ -1,0 +1,136 @@
+/usr/bin/pulseaudio {
+
+/usr/bin/pulseaudio rix,
+
+/etc/ld.so.cache r,
+
+/etc/localtime r,
+/dev/{,u}random r,
+/dev/null rw,
+
+/dev/{shm,snd}/{,**} rw,
+
+owner /proc/*/fd/{,**} r,
+
+/etc/machine-id r,
+/etc/pulse/{,**} r,
+/etc/udev/udev.conf r,
+/etc/locale.alias r,
+
+/usr/lib/locale/locale-archive r,
+
+owner /run/user/*/pulse/{,*} rw,
+owner /tmp/orcexec* rw,
+/run/dbus/system_bus_socket rw,
+/run/systemd/journal/dev-log w,
+/run/udev/data/{,**} rw,
+/run/systemd/users/{,*} r,
+
+/usr/share/{alsa,applications,pulseaudio}/{,**} r,
+
+/sys/{bus,class}/{,**} r,
+/sys/devices/{,**} r,
+
+network netlink raw,
+
+signal (send, receive) set=("abrt"),
+signal (send, receive) set=("exists"),
+signal (send, receive) set=("trap"),
+unix,
+
+dbus send
+ bus=system
+ path=/org/freedesktop/DBus
+ interface=org.freedesktop.DBus
+ member=Hello
+ peer=(name=org.freedesktop.DBus),
+
+ptrace (trace, tracedby) peer=/usr/bin/pulseaudio,
+
+/proc/asound/{,**} r,
+/proc/{cpuinfo,stat} r,
+/sys/devices/system/cpu/{,**} r,
+
+/usr/lib/pulse-?.0/{,**} rm,
+/usr/lib/x86_64-linux-gnu/alsa-lib/{,**} rm,
+
+/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache r,
+
+owner /proc/*/stat r,
+
+owner /home/*/.config/pulse/{,**} rw,
+owner /home/*/orcexec.*/{,**} rw,
+owner /home/*/.Xauthority r,
+
+/usr/lib/x86_64-linux-gnu/libasound.so.* rm,
+
+/lib/x86_64-linux-gnu/libudev.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/libvorbis.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/libogg.so.* rm,
+
+/lib/x86_64-linux-gnu/libresolv*.so{,.?} rm,
+
+/lib/x86_64-linux-gnu/libnsl*.so{,.?} rm,
+
+/usr/lib/x86_64-linux-gnu/libXdmcp.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/libXau.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/libvorbisenc.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/libFLAC.so.* rm,
+
+/lib/x86_64-linux-gnu/libgpg-error.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/libasyncns.so.* rm,
+
+/lib/x86_64-linux-gnu/libwrap.so.* rm,
+
+/lib/x86_64-linux-gnu/libjson-c.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/libxcb.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/{,sse2/}libspeexdsp.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/libtdb.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/liborc*.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/libsndfile.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/libX11.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/libX11-xcb.so.* rm,
+
+/lib/x86_64-linux-gnu/libgcc_s.so.? rm,
+
+/lib/x86_64-linux-gnu/libgcrypt.so.* rm,
+
+/lib/x86_64-linux-gnu/liblzma.so.* rm,
+
+/lib/x86_64-linux-gnu/libc*.so{,.?} rm,
+
+/lib/x86_64-linux-gnu/libm*.so{,.?} rm,
+
+/lib/x86_64-linux-gnu/libdl*.so{,.?} rm,
+
+/lib/x86_64-linux-gnu/librt*.so{,.?} rm,
+
+/lib/x86_64-linux-gnu/libpthread*.so{,.?} rm,
+
+/lib/x86_64-linux-gnu/libcap.so.* rm,
+
+/lib/x86_64-linux-gnu/libsystemd.so.* rm,
+
+/usr/lib/libpulsecore-?.0.so rm,
+/usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-?.0.so rm,
+
+/usr/lib/x86_64-linux-gnu/libpulse.so.* rm,
+
+/usr/lib/x86_64-linux-gnu/libltdl.so.* rm,
+
+/lib/x86_64-linux-gnu/libdbus-?.so.* rm,
+
+}
