@@ -55,6 +55,7 @@ dbus send
 /usr/lib/i386-linux-gnu/gconv/gconv-modules.cache r,
 
 owner /home/*/.config/pulse/{,**} rw,
+owner /home/*/orcexec.*/{,**} rw,
 owner /home/*/.Xauthority r,
 
 /usr/lib/i386-linux-gnu/libasound.so.* rm,
