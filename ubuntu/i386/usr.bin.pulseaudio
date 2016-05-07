@@ -45,6 +45,8 @@ dbus send
  member=Hello
  peer=(name=org.freedesktop.DBus),
 
+ptrace (trace, tracedby) peer=/usr/bin/pulseaudio,
+
 /proc/asound/{,**} r,
 /proc/{cpuinfo,stat} r,
 /sys/devices/system/cpu/{,**} r,
@@ -53,6 +55,8 @@ dbus send
 /usr/lib/i386-linux-gnu/alsa-lib/{,**} rm,
 
 /usr/lib/i386-linux-gnu/gconv/gconv-modules.cache r,
+
+owner /proc/*/stat r,
 
 owner /home/*/.config/pulse/{,**} rw,
 owner /home/*/orcexec.*/{,**} rw,
