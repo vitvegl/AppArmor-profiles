@@ -3,6 +3,9 @@
 deny network,
 deny capability,
 
+signal (send) set=("exists") peer=unconfined,
+signal (send, receive) set=("exists") peer=/usr/bin/pulseaudio,
+
 /etc/ld.so.cache r,
 /etc/machine-id r,
 
@@ -17,65 +20,53 @@ deny capability,
 
 /dev/snd/* rw,
 /dev/snd/controlC0 rw,
-/dev/shm r,
+/dev/shm/ r,
 /dev/shm/** rw,
+
+owner /proc/*/fd/ r,
 
 /usr/lib/x86_64-linux-gnu/alsa-lib/{,**} r,
 /usr/lib/x86_64-linux-gnu/alsa-lib/*.so m,
 
 /etc/pulse/client.conf r,
 
-/usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-6.0.so rm,
-/usr/lib/x86_64-linux-gnu/libportaudio.so.2 r,
-/usr/lib/x86_64-linux-gnu/libportaudio.so.2.0.0 rm,
+/usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-?.0.so rm,
+/usr/lib/x86_64-linux-gnu/libportaudio.so.* rm,
 
 /usr/bin/pulseaudio Pix,
 
-/usr/lib/libpulsecore-6.0.so rm,
+/usr/lib/libpulsecore-?.0.so rm,
 
-/usr/lib/x86_64-linux-gnu/liborc-0.4.so.0 r,
-/usr/lib/x86_64-linux-gnu/liborc-0.4.so.0.23.0 rm,
+/usr/lib/x86_64-linux-gnu/liborc-*.so.* rm,
 
-/lib/x86_64-linux-gnu/libattr.so.1.1.0 rm,
-/lib/x86_64-linux-gnu/libuuid.so.1.3.0 rm,
-/usr/lib/x86_64-linux-gnu/libXext.so.6.4.0 rm,
-/usr/lib/x86_64-linux-gnu/libXi.so.6.1.0 rm,
-/lib/x86_64-linux-gnu/liblzma.so.5.0.0 rm,
-/lib/x86_64-linux-gnu/libgcrypt.so.20.0.3 rm,
-/lib/x86_64-linux-gnu/libresolv-2.21.so rm,
-/lib/x86_64-linux-gnu/libnsl-2.21.so rm,
+/lib/x86_64-linux-gnu/libattr.so.* rm,
+/lib/x86_64-linux-gnu/libuuid.so.* rm,
+/usr/lib/x86_64-linux-gnu/libXext.so.* rm,
+/usr/lib/x86_64-linux-gnu/libXi.so.* rm,
+/lib/x86_64-linux-gnu/liblzma.so.* rm,
+/lib/x86_64-linux-gnu/libgcrypt.so.* rm,
+/lib/x86_64-linux-gnu/libresolv*.so{,.?} rm,
+/lib/x86_64-linux-gnu/libnsl*.so{,.?} rm,
 
-/lib/x86_64-linux-gnu/libgpg-error.so.0 r,
-/lib/x86_64-linux-gnu/libgpg-error.so.0.15.0 rm,
+/lib/x86_64-linux-gnu/libgpg-error.so.* rm,
 
-/usr/lib/x86_64-linux-gnu/libaudio.so.2 r,
-/usr/lib/x86_64-linux-gnu/libaudio.so.2.4 rm,
+/usr/lib/x86_64-linux-gnu/libaudio.so.* rm,
 
-/usr/lib/x86_64-linux-gnu/libXt.so.6 r,
-/usr/lib/x86_64-linux-gnu/libXt.so.6.0.0 rm,
+/usr/lib/x86_64-linux-gnu/libXt.so.* rm,
 
-/usr/lib/x86_64-linux-gnu/libFLAC.so.8.3.0 rm,
-/usr/lib/x86_64-linux-gnu/libvorbisenc.so.2.0.10 rm,
-/usr/lib/x86_64-linux-gnu/libogg.so.0.8.2 rm,
-/usr/lib/x86_64-linux-gnu/libvorbis.so.0.4.7 rm,
+/usr/lib/x86_64-linux-gnu/libFLAC.so.* rm,
+/usr/lib/x86_64-linux-gnu/libvorbisenc.so.* rm,
+/usr/lib/x86_64-linux-gnu/libogg.so.* rm,
+/usr/lib/x86_64-linux-gnu/libvorbis.so.* rm,
 
-/usr/lib/x86_64-linux-gnu/libmpg123.so.0 r,
-/usr/lib/x86_64-linux-gnu/libmpg123.so.0.41.0 rm,
+/usr/lib/x86_64-linux-gnu/libmpg123.so.* rm,
 
-/usr/lib/x86_64-linux-gnu/libltdl.so.7 r,
-/usr/lib/x86_64-linux-gnu/libltdl.so.7.3.0 rm,
+/usr/lib/x86_64-linux-gnu/libltdl.so.* rm,
 
-/lib/x86_64-linux-gnu/libc.so.6 r,
-/lib/x86_64-linux-gnu/libc-2.21.so rm,
+/lib/x86_64-linux-gnu/lib{c,dl,m,rt}*.so{,.?} rm,
 
-/lib/x86_64-linux-gnu/libm.so.6 r,
-/lib/x86_64-linux-gnu/libm-2.21.so rm,
-
-/lib/x86_64-linux-gnu/libdl.so.2 r,
-/lib/x86_64-linux-gnu/libdl-2.21.so rm,
-
-/lib64/ld-linux-x86-64.so.2 r,
-/lib/x86_64-linux-gnu/ld-2.21.so rm,
+/lib64/ld-linux-x86-64.so.? r,
+/lib/x86_64-linux-gnu/ld-*.so rm,
 
 /usr/lib/x86_64-linux-gnu/mpg123/ r,
 /usr/lib/x86_64-linux-gnu/mpg123/output_alsa.so rm,
@@ -87,62 +78,47 @@ deny capability,
 /usr/lib/x86_64-linux-gnu/mpg123/output_portaudio.so rm,
 /usr/lib/x86_64-linux-gnu/mpg123/output_pulse.so rm,
 
-/usr/lib/x86_64-linux-gnu/libasound.so.2.0.0 rm,
-/usr/lib/x86_64-linux-gnu/libjack.so.0.1.0 rm,
-/usr/lib/x86_64-linux-gnu/libpulse-simple.so.0.1.0 rm,
+/usr/lib/x86_64-linux-gnu/libasound.so.* rm,
+/usr/lib/x86_64-linux-gnu/libjack.so.* rm,
+/usr/lib/x86_64-linux-gnu/libpulse-simple.so.* rm,
 
-/usr/lib/x86_64-linux-gnu/libpulse.so.0 r,
-/usr/lib/x86_64-linux-gnu/libpulse.so.0.18.0 rm,
+/usr/lib/x86_64-linux-gnu/libpulse.so.* rm,
 
-/lib/x86_64-linux-gnu/libpthread-2.21.so rm,
-/lib/x86_64-linux-gnu/librt-2.21.so rm,
-/usr/lib/x86_64-linux-gnu/libopus.so.0.5.0 rm,
+/lib/x86_64-linux-gnu/libpthread*.so rm,
+/usr/lib/x86_64-linux-gnu/libopus.so.* rm,
 
-/usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-5.0.so rm,
+/usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-?.0.so rm,
 /usr/lib/x86_64-linux-gnu/alsa-lib/libasound_module_conf_pulse.so rm,
 /usr/lib/x86_64-linux-gnu/alsa-lib/libasound_module_pcm_pulse.so rm,
 
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6 r,
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21 rm,
+/usr/lib/x86_64-linux-gnu/libstdc++.so.* rm,
 
-/lib/x86_64-linux-gnu/libcap.so.2.24 rm,
-/lib/x86_64-linux-gnu/libjson-c.so.2.0.0 rm,
-/lib/x86_64-linux-gnu/libgcc_s.so.1 rm,
+/lib/x86_64-linux-gnu/libcap.so.* rm,
+/lib/x86_64-linux-gnu/libjson-c.so.* rm,
+/lib/x86_64-linux-gnu/libgcc_s.so.? rm,
 
-/lib/x86_64-linux-gnu/libdbus-1.so.3 r,
-/lib/x86_64-linux-gnu/libdbus-1.so.3.14.3 rm,
+/lib/x86_64-linux-gnu/libdbus-1.so.* rm,
 
-/usr/lib/x86_64-linux-gnu/libX11-xcb.so.1.0.0 rm,
-/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0 rm,
-/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0 rm,
-/usr/lib/x86_64-linux-gnu/libICE.so.6.3.0 rm,
-/usr/lib/x86_64-linux-gnu/libSM.so.6.0.1 rm,
-/usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0 rm,
+/usr/lib/x86_64-linux-gnu/libX11{,-xcb}.so.* rm,
+/usr/lib/x86_64-linux-gnu/libxcb.so.* rm,
+/usr/lib/x86_64-linux-gnu/libICE.so.* rm,
+/usr/lib/x86_64-linux-gnu/libSM.so.* rm,
+/usr/lib/x86_64-linux-gnu/libXtst.so.* rm,
 
-/lib/x86_64-linux-gnu/libwrap.so.0.7.6 rm,
-/usr/lib/x86_64-linux-gnu/libsndfile.so.1.0.25 rm,
-/usr/lib/x86_64-linux-gnu/libasyncns.so.0.3.1 rm,
-/usr/lib/x86_64-linux-gnu/libXau.so.6.0.0 rm,
-/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0 rm,
+/lib/x86_64-linux-gnu/libwrap.so.* rm,
+/usr/lib/x86_64-linux-gnu/libsndfile.so.* rm,
+/usr/lib/x86_64-linux-gnu/libasyncns.so.* rm,
+/usr/lib/x86_64-linux-gnu/libXau.so.* rm,
+/usr/lib/x86_64-linux-gnu/libXdmcp.so.* rm,
 
-/lib/x86_64-linux-gnu/libnss_files.so.2 r,
-/lib/x86_64-linux-gnu/libnss_files-2.21.so rm,
+/lib/x86_64-linux-gnu/libnss_{compat,files,nis}*.so{,.?} rm,
 
-/lib/x86_64-linux-gnu/libnss_compat.so.2 r,
-/lib/x86_64-linux-gnu/libnss_compat-2.21.so rm,
+/usr/lib/x86_64-linux-gnu{,/sse2}/libspeexdsp.so.* rm,
 
-/lib/x86_64-linux-gnu/libnss_nis.so.2 r,
-/lib/x86_64-linux-gnu/libnss_nis-2.21.so rm,
-
-/usr/lib/x86_64-linux-gnu/libspeexdsp.so.1 r,
-/usr/lib/x86_64-linux-gnu/libspeexdsp.so.1.5.0 rm,
-
-# Systemd
-
-/lib/x86_64-linux-gnu/libsystemd.so.0 r,
-/lib/x86_64-linux-gnu/libsystemd.so.0.10.2 rm,
+/lib/x86_64-linux-gnu/libsystemd.so.* rm,
 
 unix addr=none,
+owner /run/user/*/pulse/ rw,
 owner /run/user/*/pulse/native rw,
 
 /usr/share/alsa/** r,
