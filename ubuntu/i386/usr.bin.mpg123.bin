@@ -1,0 +1,130 @@
+/usr/bin/mpg123.bin {
+
+deny network,
+deny capability,
+
+signal (send) set=("exists") peer=unconfined,
+signal (send, receive) set=("exists") peer=/usr/bin/pulseaudio,
+
+/etc/ld.so.cache r,
+/etc/machine-id r,
+
+/etc/nsswitch.conf r,
+/etc/group r,
+
+/usr/lib/i386-linux-gnu/gconv/gconv-modules.cache r,
+
+/proc/cpuinfo r,
+
+/dev/urandom r,
+
+/dev/snd/* rw,
+/dev/snd/controlC0 rw,
+/dev/shm/ r,
+/dev/shm/** rw,
+
+owner /proc/*/fd/ r,
+
+/usr/lib/i386-linux-gnu/alsa-lib/{,**} r,
+/usr/lib/i386-linux-gnu/alsa-lib/*.so m,
+
+/etc/pulse/client.conf r,
+
+/usr/lib/i386-linux-gnu/pulseaudio/libpulsecommon-?.0.so rm,
+/usr/lib/i386-linux-gnu/libportaudio.so.* rm,
+
+/usr/bin/pulseaudio Pix,
+
+/usr/lib/libpulsecore-?.0.so rm,
+
+/usr/lib/i386-linux-gnu/liborc-*.so.* rm,
+
+/lib/i386-linux-gnu/libattr.so.* rm,
+/lib/i386-linux-gnu/libuuid.so.* rm,
+/usr/lib/i386-linux-gnu/libXext.so.* rm,
+/usr/lib/i386-linux-gnu/libXi.so.* rm,
+/lib/i386-linux-gnu/liblzma.so.* rm,
+/lib/i386-linux-gnu/libgcrypt.so.* rm,
+/lib/i386-linux-gnu/libresolv*.so{,.?} rm,
+/lib/i386-linux-gnu/libnsl*.so{,.?} rm,
+
+/lib/i386-linux-gnu/libgpg-error.so.* rm,
+
+/usr/lib/i386-linux-gnu/libaudio.so.* rm,
+
+/usr/lib/i386-linux-gnu/libXt.so.* rm,
+
+/usr/lib/i386-linux-gnu/libFLAC.so.* rm,
+/usr/lib/i386-linux-gnu/libvorbisenc.so.* rm,
+/usr/lib/i386-linux-gnu/libogg.so.* rm,
+/usr/lib/i386-linux-gnu/libvorbis.so.* rm,
+
+/usr/lib/i386-linux-gnu/libmpg123.so.* rm,
+
+/usr/lib/i386-linux-gnu/libltdl.so.* rm,
+
+/lib/i386-linux-gnu/lib{c,dl,m,rt}*.so{,.?} rm,
+
+/lib64/ld-linux-x86-64.so.? r,
+/lib/i386-linux-gnu/ld-*.so rm,
+
+/usr/lib/i386-linux-gnu/mpg123/ r,
+/usr/lib/i386-linux-gnu/mpg123/output_alsa.so rm,
+/usr/lib/i386-linux-gnu/mpg123/output_dummy.so rm,
+/usr/lib/i386-linux-gnu/mpg123/output_jack.so rm,
+/usr/lib/i386-linux-gnu/mpg123/output_nas.so rm,
+/usr/lib/i386-linux-gnu/mpg123/output_openal.so rm,
+/usr/lib/i386-linux-gnu/mpg123/output_oss.so rm,
+/usr/lib/i386-linux-gnu/mpg123/output_portaudio.so rm,
+/usr/lib/i386-linux-gnu/mpg123/output_pulse.so rm,
+
+/usr/lib/i386-linux-gnu/libasound.so.* rm,
+/usr/lib/i386-linux-gnu/libjack.so.* rm,
+/usr/lib/i386-linux-gnu/libpulse-simple.so.* rm,
+
+/usr/lib/i386-linux-gnu/libpulse.so.* rm,
+
+/lib/i386-linux-gnu/libpthread*.so rm,
+/usr/lib/i386-linux-gnu/libopus.so.* rm,
+
+/usr/lib/i386-linux-gnu/pulseaudio/libpulsecommon-?.0.so rm,
+/usr/lib/i386-linux-gnu/alsa-lib/libasound_module_conf_pulse.so rm,
+/usr/lib/i386-linux-gnu/alsa-lib/libasound_module_pcm_pulse.so rm,
+
+/usr/lib/i386-linux-gnu/libstdc++.so.* rm,
+
+/lib/i386-linux-gnu/libcap.so.* rm,
+/lib/i386-linux-gnu/libjson-c.so.* rm,
+/lib/i386-linux-gnu/libgcc_s.so.? rm,
+
+/lib/i386-linux-gnu/libdbus-1.so.* rm,
+
+/usr/lib/i386-linux-gnu/libX11{,-xcb}.so.* rm,
+/usr/lib/i386-linux-gnu/libxcb.so.* rm,
+/usr/lib/i386-linux-gnu/libICE.so.* rm,
+/usr/lib/i386-linux-gnu/libSM.so.* rm,
+/usr/lib/i386-linux-gnu/libXtst.so.* rm,
+
+/lib/i386-linux-gnu/libwrap.so.* rm,
+/usr/lib/i386-linux-gnu/libsndfile.so.* rm,
+/usr/lib/i386-linux-gnu/libasyncns.so.* rm,
+/usr/lib/i386-linux-gnu/libXau.so.* rm,
+/usr/lib/i386-linux-gnu/libXdmcp.so.* rm,
+
+/lib/i386-linux-gnu/libnss_{compat,files,nis}*.so{,.?} rm,
+
+/usr/lib/i386-linux-gnu{,/sse2}/libspeexdsp.so.* rm,
+
+/lib/i386-linux-gnu/libsystemd.so.* rm,
+
+unix addr=none,
+owner /run/user/*/pulse/ rw,
+owner /run/user/*/pulse/native rw,
+
+/usr/share/alsa/** r,
+
+owner /home/*/Music/** r,
+owner /home/*/.Xauthority r,
+owner /home/*/.config/pulse/cookie rk,
+
+}
