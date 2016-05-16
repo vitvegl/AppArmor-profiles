@@ -36,6 +36,7 @@ network netlink raw,
 signal (send, receive) set=("abrt"),
 signal (send, receive) set=("exists"),
 signal (send, receive) set=("trap"),
+signal (receive) set=("kill") peer=unconfined,
 unix,
 
 dbus send
@@ -44,6 +45,27 @@ dbus send
  interface=org.freedesktop.DBus
  member=Hello
  peer=(name=org.freedesktop.DBus),
+
+dbus send
+ bus=session
+ path=/org/freedesktop/DBus
+ interface=org.freedesktop.DBus
+ member=Hello
+ peer=(name=org.freedesktop.DBus),
+
+dbus send
+ bus=session
+ path=/org/freedesktop/DBus
+ interface=org.freedesktop.DBus
+ member=RequestName
+ peer=(name=org.freedesktop.DBus,label=/usr/bin/pulseaudio),
+
+dbus send
+ bus=session
+ path=/org/freedesktop/DBus
+ interface=org.freedesktop.DBus
+ member=AddMatch
+ peer=(name=org.freedesktop.org,label=/usr/bin/pulseaudio),
 
 ptrace (trace, tracedby) peer=/usr/bin/pulseaudio,
 
@@ -110,13 +132,7 @@ owner /home/*/.Xauthority r,
 
 /lib/i386-linux-gnu/liblzma.so.* rm,
 
-/lib/i386-linux-gnu/libc*.so{,.?} rm,
-
-/lib/i386-linux-gnu/libm*.so{,.?} rm,
-
-/lib/i386-linux-gnu/libdl*.so{,.?} rm,
-
-/lib/i386-linux-gnu/librt*.so{,.?} rm,
+/lib/i386-linux-gnu/lib{c,dl,m,rt}*.so{,.?} rm,
 
 /lib/i386-linux-gnu/libpthread*.so{,.?} rm,
 
@@ -132,5 +148,7 @@ owner /home/*/.Xauthority r,
 /usr/lib/i386-linux-gnu/libltdl.so.* rm,
 
 /lib/i386-linux-gnu/libdbus-?.so.* rm,
+
+/lib/i386-linux-gnu/ld-*.so rm,
 
 }
