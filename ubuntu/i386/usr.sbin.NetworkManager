@@ -24,6 +24,7 @@
  signal (receive) set=("term") peer=unconfined,
  signal (receive) set=("exists") peer=unconfined,
  signal (receive) set=("cont") peer=unconfined,
+ signal (send) set=("exists") peer=/sbin/dhclient,
  signal (send) set=("term") peer=/sbin/dhclient,
  signal (send, receive) set=("kill") peer=/usr/sbin/dnsmasq,
 
