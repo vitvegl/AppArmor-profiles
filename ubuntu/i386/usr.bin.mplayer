@@ -13,9 +13,11 @@ unix (send, receive, connect) type=stream addr=none peer=(addr=@/tmp/.X11-unix/X
 
 /etc/fonts/{,**} r,
 /etc/locale.alias r,
+/etc/localtime r,
 /etc/machine-id r,
 /etc/mplayer/{,**} r,
 /etc/pulse/client.conf r,
+/etc/vdpau_wrapper.cfg r,
 
 /dev/shm/ r,
 /dev/shm/pulse-shm-* rw,
@@ -26,6 +28,7 @@ unix (send, receive, connect) type=stream addr=none peer=(addr=@/tmp/.X11-unix/X
 /proc/meminfo r,
 
 owner /run/user/*/pulse/{,native} rw,
+owner /proc/*/cmdline r,
 owner /proc/*/fd/{,*} r,
 owner /proc/*/status r,
 
@@ -33,13 +36,14 @@ owner /proc/*/status r,
 
 /usr/lib/i386-linux-gnu/gconv/{,**} rm,
 /usr/lib/locale/{,**} rm,
-/usr/share/{alsa,applications,fonts,fontconfig,libquvi-scripts,locale{,-langpack},poppler}/{,**} r,
+/usr/share/{alsa,applications,fonts,fontconfig,icons,libquvi-scripts,locale{,-langpack},poppler,X11}/{,**} r,
 /usr/local/share/fonts/{,**} r,
 /var/cache/fontconfig/{,*} r,
 
 /lib/terminfo/x/xterm r,
 
 owner /home/*/{Music,Videos}/{,**} r,
+owner /home/*/.icons/{,**} r,
 owner /home/*/.mplayer/{,**} rwl,
 owner /home/*/.config/pulse/{,**} r,
 owner /home/*/.pulse/client.conf r,
@@ -285,5 +289,7 @@ owner /home/*/.Xauthority r,
 /usr/lib/i386-linux-gnu/libsmbclient.so.* rm,
 
 /usr/lib/i386-linux-gnu/libquvi.so.* rm,
+
+/usr/lib/i386-linux-gnu/libX{cursor,render}.so.* rm,
 
 }
