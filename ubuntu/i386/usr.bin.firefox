@@ -6,6 +6,8 @@
 network,
 capability mknod,
 
+/usr/lib/firefox/firefox Px,
+
 signal (send, receive) set=("exists") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
 signal (send) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
 signal (receive) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",

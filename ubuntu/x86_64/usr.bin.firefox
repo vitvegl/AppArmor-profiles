@@ -6,6 +6,8 @@ dbus,
 network,
 capability mknod,
 
+/usr/lib/firefox/firefox Px,
+
 signal (send) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
 signal (receive) set=("vtalrm") peer="/usr/lib/firefox/firefox{,*[^s][^h]}",
 
