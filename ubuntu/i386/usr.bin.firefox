@@ -107,7 +107,9 @@ owner /tmp/webdriver-profile*/{,**} rwl,
 
 /etc/drirc r,
 /etc/fonts/{,**} r,
+/etc/gai.conf r,
 /etc/gnome/defaults.list r,
+/etc/gtk-*/{,**} r,
 /etc/hosts r,
 /etc/host.conf r,
 /etc/localtime r,
@@ -129,8 +131,7 @@ owner /tmp/webdriver-profile*/{,**} rwl,
 /usr/share/mozilla/{,**} r,
 /usr/share/zoneinfo/{,**} r,
 
-# lubuntu-specific
-/etc/xdg/lubuntu/{,**} r,
+/etc/xdg/{,?}ubuntu/{,**} r,
 
 /etc/locale.alias r,
 
@@ -227,7 +228,7 @@ owner /tmp/webdriver-profile*/{,**} rwl,
 
 /usr/lib/i386-linux-gnu/libswresample-ffmpeg.so.* rm,
 
-/usr/lib/i386-linux-gnu/libprotobuf-lite.so.* rm,
+/usr/lib/i386-linux-gnu/libprotobuf{,-lite}.so.* rm,
 
 /usr/lib/libgssdp*.so.* rm,
 
@@ -253,7 +254,7 @@ owner /tmp/webdriver-profile*/{,**} rwl,
 
 /usr/lib/i386-linux-gnu/libXss.so.* rm,
 
-/usr/lib/i386-linux-gnu/libdbusmenu-{glib,gtk}.so.* rm,
+/usr/lib/i386-linux-gnu/libdbusmenu-{glib,gtk}*.so.* rm,
 
 /usr/lib/i386-linux-gnu/libgconf-?.so.* rm,
 
