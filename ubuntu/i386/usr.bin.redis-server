@@ -7,6 +7,9 @@
  signal (receive) set=("term") peer=unconfined,
 
  network inet stream,
+ network inet6 stream,
+
+ unix type=stream addr=none,
 
  /etc/ld.so.cache r,
 
@@ -36,5 +39,8 @@
  /var/lib/redis/{,**} rw,
  /var/log/redis/ r,
  /var/log/redis/redis-server.log w,
+
+ /tmp/ r,
+ owner /tmp/redis.sock rw,
 
 }
