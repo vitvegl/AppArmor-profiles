@@ -83,12 +83,17 @@ owner /home/*/.dropbox-dist/{,**} rwixk,
 owner /home/*/.dropbox** rwk,
 owner /home/*/Dropbox** rwkl,
 owner /home/*/.config/autostart/dropbox.desktop w,
-owner /home/*/.dropbox-dist/dropbox-lnx.x86-3.16.1/library.zip rl,
-owner /home/*/.dropbox-dist/dropbox-lnx.x86-3.16.1/dropbox rwl,
+
+owner /home/*/.dropbox-dist/dropbox-lnx.x86-*/library.zip rl,
+owner /home/*/.dropbox-dist/dropbox-lnx.x86-*/dropbox rwl,
+
 owner /home/*/.dropbox-dist/dropboxd rix,
 owner /home/*/.dropbox/dropbox.pid rwk,
 owner /home/*/.config/autostart/ r,
 owner /home/*/.config/autostart/dropbox.desktop rw,
-owner /home/*/.gtkrc-2.0 r,
+owner /home/*/.gtkrc-?.0 r,
 
 owner /tmp/{,**} ixrw,
+
+owner /tmp/tmp.gpg*/{pubring,secring}.gpg.lock rwkl,
+owner /tmp/tmp.gpg*/{,**} rwkl,
