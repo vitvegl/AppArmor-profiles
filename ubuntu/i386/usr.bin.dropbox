@@ -23,6 +23,8 @@
 /bin/mount ixr,
 
 /usr/bin/gpg ixr,
+/usr/bin/gpg2 ixr,
+/usr/bin/gpgconf ixr,
 
 /usr/bin/gconftool-2 ixr,
 /usr/bin/ldd ixr,
@@ -135,6 +137,7 @@ signal (send) peer=unconfined,
 
 /usr/lib/i386-linux-gnu/gconv/gconv-modules{,.cache} r,
 /usr/lib/i386-linux-gnu/gtk-?.0/*/immodules.cache r,
+/usr/lib/i386-linux-gnu/gtk-?.0/*/engines/*.so r,
 
 /usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders/libpixbufloader-svg.so rm,
 /usr/lib/i386-linux-gnu/gdk-pixbuf-?.0/*/loaders.cache r,
