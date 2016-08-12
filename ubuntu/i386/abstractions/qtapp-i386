@@ -1,0 +1,4 @@
+/usr/lib/i386-linux-gnu/libQt{Core,DBus,Gui,Network,Script,Svg,Xml}.so.* rm,
+/usr/lib/i386-linux-gnu/qt4/{,**} rm,
+
+owner /home/*/.config/Trolltech.conf r,

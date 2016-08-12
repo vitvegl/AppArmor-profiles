@@ -1,0 +1,155 @@
+/usr/bin/smplayer {
+
+  #include <abstractions/gconv-i386>
+  #include <abstractions/qtapp-i386>
+
+  capability mknod,
+
+  signal (send) set=("kill") peer="/usr/bin/mplayer",
+
+  unix type=stream addr=none,
+  unix type=dgram addr=none,
+
+  network inet dgram,
+  network inet stream,
+  network netlink raw,
+
+  /lib/i386-linux-gnu/ r,
+
+  /usr/bin/mplayer Px,
+
+  /etc/ld.so.cache r,
+  /lib/ld-linux.so.2 r,
+  /lib/i386-linux-gnu/ld-*.so rm,
+  /lib/i386-linux-gnu/libgcc_s.so.? rm,
+  /usr/lib/i386-linux-gnu/libstdc++.so.* rm,
+  /lib/i386-linux-gnu/libselinux.so.? rm,
+
+  /lib/i386-linux-gnu/lib{c,m,nsl,dl,pthread,resolv,rt}*.so{,?} rm,
+  /lib/i386-linux-gnu/libnss_{compat,dns,files,nis}*.so{,?} rm,
+
+  /lib/i386-linux-gnu/libz.so.* rm,
+
+  /lib/i386-linux-gnu/libdbus-?.so.* rm,
+  /usr/lib/i386-linux-gnu/libfontconfig.so.* rm,
+
+  /usr/lib/i386-linux-gnu/libaudio.so.* rm,
+
+  /lib/i386-linux-gnu/libglib-*.so.* rm,
+
+  /lib/i386-linux-gnu/libpng12.so.* rm,
+
+  /usr/lib/i386-linux-gnu/libfreetype.so.* rm,
+
+  /usr/lib/i386-linux-gnu/libgobject-*.so.* rm,
+
+  /usr/lib/i386-linux-gnu/libSM.so.* rm,
+
+  /usr/lib/i386-linux-gnu/libICE.so.* rm,
+  /usr/lib/i386-linux-gnu/libXi.so.* rm,
+  /usr/lib/i386-linux-gnu/libXinerama.so.* rm,
+  /usr/lib/i386-linux-gnu/libXfixes.so.* rm,
+  /usr/lib/i386-linux-gnu/libXrender.so.* rm,
+  /usr/lib/i386-linux-gnu/libXext.so.* rm,
+  /usr/lib/i386-linux-gnu/libX11.so.* rm,
+  /usr/lib/i386-linux-gnu/libXrandr.so.* rm,
+  /usr/lib/i386-linux-gnu/libXt.so.* rm,
+  /usr/lib/i386-linux-gnu/libXau.so.* rm,
+  /usr/lib/i386-linux-gnu/libXdmcp.so.* rm,
+  /usr/lib/i386-linux-gnu/libXcursor.so.* rm,
+  /usr/lib/i386-linux-gnu/libXcomposite.so.* rm,
+  /usr/lib/i386-linux-gnu/libXdamage.so.* rm,
+
+  /usr/lib/i386-linux-gnu/libtiff.so.* rm,
+  /usr/lib/i386-linux-gnu/libmng.so.* rm,
+  /usr/lib/i386-linux-gnu/libjpeg.so.* rm,
+  /usr/lib/i386-linux-gnu/libjbig.so.* rm,
+  /usr/lib/i386-linux-gnu/liblcms2.so.* rm,
+  /usr/lib/i386-linux-gnu/libpixman-?.so.* rm,
+  /usr/lib/i386-linux-gnu/libxcb-{render,shm}.so.* rm,
+  /usr/lib/i386-linux-gnu/libxkbcommon.so.* rm,
+  /usr/lib/i386-linux-gnu/libharfbuzz.so.* rm,
+  /usr/lib/i386-linux-gnu/libthai.so.* rm,
+  /usr/lib/i386-linux-gnu/libgraphite2.so.* rm,
+  /usr/lib/i386-linux-gnu/libdatrie.so.* rm,
+  /usr/lib/i386-linux-gnu/librsvg{,-?}.so.* rm,
+  /usr/lib/i386-linux-gnu/libcroco*.so.* rm,
+  /usr/lib/i386-linux-gnu/libicu{data,uc}.so.* rm,
+
+  /usr/lib/i386-linux-gnu/libcairo.so.* rm,
+  /usr/lib/i386-linux-gnu/libgconf-?.so.* rm,
+  /usr/lib/i386-linux-gnu/libatk*.so.* rm,
+  /usr/lib/i386-linux-gnu/libg{d,t}k-x11*.so.* rm,
+  /usr/lib/i386-linux-gnu/libgdk_pixbuf*.so.* rm,
+  /usr/lib/i386-linux-gnu/gdk-pixbuf*/{,**} r,
+  /usr/lib/i386-linux-gnu/libgmodule-*.so.* rm,
+  /usr/lib/i386-linux-gnu/libgio*.so.* rm,
+
+  /usr/lib/i386-linux-gnu/libfcitx*.so.* rm,
+
+  /usr/lib/i386-linux-gnu/libpango{,{cairo,ft}}*.so.* rm,
+  
+  /usr/lib/i386-linux-gnu/libdbus-glib-?.so.* rm,
+
+  /usr/lib/i386-linux-gnu/gvfs/libgvfscommon.so rm,
+  /lib/i386-linux-gnu/libudev.so.* rm,
+
+  /lib/i386-linux-gnu/libsystemd.so.* rm,
+  /lib/i386-linux-gnu/libexpat.so.* rm,
+  /lib/i386-linux-gnu/libpcre.so.* rm,
+  /usr/lib/i386-linux-gnu/libffi.so.* rm,
+  /lib/i386-linux-gnu/libuuid.so.* rm,
+  /usr/lib/i386-linux-gnu/libxcb.so.* rm,
+  /lib/i386-linux-gnu/liblzma.so.* rm,
+  /lib/i386-linux-gnu/libcrypto.so.* rm,
+  /lib/i386-linux-gnu/libgcrypt.so.* rm,
+  /lib/i386-linux-gnu/libssl.so.* rm,
+  /lib/i386-linux-gnu/libgpg-error.so.* rm,
+  /usr/lib/i386-linux-gnu/libxml2.so.* rm,
+
+  /etc/ssl/{,**} r,
+  deny /etc/ssl/private/{,**} rw,
+  /usr/lib/ssl/{,**} r,
+
+  /usr/lib/i386-linux-gnu/gvfs/ r,
+
+  /sys/devices/system/cpu/** r,
+
+  owner /proc/*/{cmdline,mounts} r,
+  /proc/filesystems r,
+  /proc/stat r,
+  /proc/sys/vm/overcommit_memory r,
+
+  /dev/urandom r,
+
+  /etc/machine-id r,
+
+  /etc/hosts r,
+  /etc/host.conf r,
+  /etc/hostname r,
+  /etc/fonts/{,**} r,
+  /etc/localtime r,
+  /etc/locale.alias r,
+  /etc/nsswitch.conf r,
+  /etc/resolv.conf r,
+  /etc/xdg/{,**} r,
+  /var/cache/fontconfig/{,*} r,
+
+  /usr/lib/i386-linux-gnu/gio/modules/{,**} r,
+
+  /usr/{lib,share}/locale/{,**} r,
+  /usr/lib/i386-linux-gnu/gtk-?.0/{,**} r,
+  /usr/{,local/}share/{ca-certificates,fonts,fontconfig,gvfs,icons,mime,pixmaps,poppler,themes,X11}/{,**} r,
+
+  owner /tmp/qtsingleapp-smplay-*{,-lockfile} rwk,
+
+  owner /home/*/.Xauthority r,
+  owner /home/*/.icons/{,**} r,
+  owner /home/*/.config/user-dirs.dirs r,
+  owner /home/*/.gtkrc-?.0 r,
+  owner /home/*/.config/{gtk-?.0,smplayer}/{,**} rwl,
+  owner /home/*/.local/share/recently-used.xbel r,
+
+  owner /home/*/Videos/{,**} r,
+  owner /home/*/English/{,**} r,
+}
