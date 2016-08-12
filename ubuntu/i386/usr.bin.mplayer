@@ -9,6 +9,7 @@ signal (send,receive) set=("exists") peer="unconfined",
 signal (send,receive) set=("exists", "kill", "usr1") peer="/usr/bin/mplayer",
 signal (send) set=("exists") peer="/usr/bin/pulseaudio",
 signal (receive) set=("term") peer="/usr/bin/smplayer",
+signal (receive) set=("kill","term") peer="unconfined",
 
 unix (create, getattr, getopt, setopt, shutdown) type=stream addr=none,
 unix (send, receive, connect) type=stream addr=none peer=(addr=@/tmp/.X11-unix/X0),
