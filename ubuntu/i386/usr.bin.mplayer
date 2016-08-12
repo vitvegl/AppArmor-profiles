@@ -3,20 +3,32 @@
 capability mknod,
 
 /usr/bin/pulseaudio Px,
+/usr/bin/mplayer rm, # mprotect
 
-signal send set=("exists"),
+signal (send,receive) set=("exists") peer="unconfined",
+signal (send,receive) set=("exists", "kill", "usr1") peer="/usr/bin/mplayer",
+signal (send) set=("exists") peer="/usr/bin/pulseaudio",
+signal (receive) set=("term") peer="/usr/bin/smplayer",
 
 unix (create, getattr, getopt, setopt, shutdown) type=stream addr=none,
 unix (send, receive, connect) type=stream addr=none peer=(addr=@/tmp/.X11-unix/X0),
 
+network inet stream,
+network inet6 stream,
+network inet dgram,
+
 /etc/ld.so.cache r,
 
 /etc/fonts/{,**} r,
+/etc/hosts r,
+/etc/host.conf r,
 /etc/locale.alias r,
 /etc/localtime r,
 /etc/machine-id r,
 /etc/mplayer/{,**} r,
+/etc/nsswitch.conf r,
 /etc/pulse/client.conf r,
+/etc/resolv.conf r,
 /etc/vdpau_wrapper.cfg r,
 
 /dev/shm/ r,
@@ -24,6 +36,7 @@ unix (send, receive, connect) type=stream addr=none peer=(addr=@/tmp/.X11-unix/X
 /dev/snd/{,**} r,
 /dev/snd/controlC0 w,
 /dev/urandom r,
+/dev/null r,
 
 /proc/meminfo r,
 
