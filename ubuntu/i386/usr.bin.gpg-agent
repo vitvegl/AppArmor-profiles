@@ -1,14 +1,25 @@
 /usr/bin/gpg-agent {
 
+#include <abstractions/gconv-i386>
+
 unix (create) type=stream addr=none,
+
+/usr/bin/pinentry-gtk-2 rix,
 
 signal (receive) set=("hup") peer=unconfined,
 signal (receive) set=("kill") peer=unconfined,
 signal (receive) set=("term") peer=unconfined,
 
 /etc/ld.so.cache r,
+/etc/machine-id r,
 
+/dev/urandom r,
 /dev/null rw,
+
+/proc/cpuinfo r,
+/proc/filesystems r,
+/proc/stat r,
+/sys/devices/system/cpu/online r,
 
 /usr/bin/gpg Px,
 
@@ -19,12 +30,90 @@ signal (receive) set=("term") peer=unconfined,
 owner /home/*/.gnupg/{,**} r,
 owner /home/*/.gnupg/private-keys-v1.d/{,*} rw,
 
+owner /home/*/.Xauthority r,
 owner /tmp/gpg-*/{,**} rwk,
+
+owner /home/*/.icons/{,**} r,
+owner /home/*/.gtkrc-?.0 r,
+
+unix (send, receive, connect) type=stream addr=none peer=(addr=@/tmp/dbus-*),
+unix (send, receive, connect) type=stream addr=none peer=(addr=@/tmp/.X11-unix/X0),
+unix (getattr) type=stream addr=none,
+
+/dev/pts/? r,
+
+owner /proc/*/mounts r,
 
 /lib/i386-linux-gnu/libc*.so{,.?} rm,
 /lib/i386-linux-gnu/libgcrypt.so.* rm,
 /usr/lib/i386-linux-gnu/libassuan.so.* rm,
 /lib/i386-linux-gnu/libgpg-error.so.* rm,
 /usr/lib/i386-linux-gnu/libpth.so.* rm,
+/usr/lib/i386-linux-gnu/libsecret-?.so.* rm,
+/usr/lib/i386-linux-gnu/libgobject*.so.* rm,
+/lib/i386-linux-gnu/libglib*.so.* rm,
+/usr/lib/i386-linux-gnu/libg[dt]k-x11*.so.* rm,
+/usr/lib/i386-linux-gnu/libpango*.so.* rm,
+/lib/i386-linux-gnu/libncursesw.so.* rm,
+/lib/i386-linux-gnu/libtinfo.so.* rm,
+/usr/lib/i386-linux-gnu/libgio*.so.* rm,
+/lib/i386-linux-gnu/libpthread*.so* rm,
+/usr/lib/i386-linux-gnu/libffi.so.* rm,
+/lib/i386-linux-gnu/libpcre.so.* rm,
+/usr/lib/i386-linux-gnu/libgmodule*.so.* rm,
+/usr/lib/i386-linux-gnu/libX11.so.* rm,
+/usr/lib/i386-linux-gnu/libXau.so.* rm,
+/usr/lib/i386-linux-gnu/libXcomposite.so.* rm,
+/usr/lib/i386-linux-gnu/libXcursor.so.* rm,
+/usr/lib/i386-linux-gnu/libXext.so.* rm,
+/usr/lib/i386-linux-gnu/libXdamage.so.* rm,
+/usr/lib/i386-linux-gnu/libXrandr.so.* rm,
+/usr/lib/i386-linux-gnu/libXi.so.* rm,
+/usr/lib/i386-linux-gnu/libXfixes.so.* rm,
+/usr/lib/i386-linux-gnu/libXrender.so.* rm,
+/usr/lib/i386-linux-gnu/libXinerama.so.* rm,
+/usr/lib/i386-linux-gnu/libXdmcp.so.* rm,
+/usr/lib/i386-linux-gnu/libatk*.so.* rm,
+/usr/lib/i386-linux-gnu/libcairo.so.* rm,
+/usr/lib/i386-linux-gnu/libgdk_pixbuf*.so.* rm,
+/usr/lib/i386-linux-gnu/libfontconfig.so.* rm,
+/lib/i386-linux-gnu/lib{dl,m,resolv,rt}*.so{,?} rm,
+/usr/lib/i386-linux-gnu/libthai.so.* rm,
+/lib/i386-linux-gnu/libz.so* rm,
+/lib/i386-linux-gnu/libselinux.so.? rm,
+/usr/lib/i386-linux-gnu/libfreetype.so.* rm,
+/usr/lib/i386-linux-gnu/libxcb{,common,-render,-shm}.so.* rm,
+/usr/lib/i386-linux-gnu/libpixman*.so* rm,
+/lib/i386-linux-gnu/libpng12.so.* rm,
+/usr/lib/i386-linux-gnu/libharfbuzz.so.* rm,
+/lib/i386-linux-gnu/libexpat.so.* rm,
+/usr/lib/i386-linux-gnu/libdatrie.so.* rm,
+/usr/lib/i386-linux-gnu/libgraphite2.so.* rm,
+/usr/lib/i386-linux-gnu/gdk-pixbuf*/{,**} rm,
+/usr/lib/i386-linux-gnu/gtk-?.0/{,**} r,
+/usr/lib/i386-linux-gnu/librsvg-?.so* rm,
+/usr/lib/i386-linux-gnu/libcroco*.so* rm,
+/usr/lib/i386-linux-gnu/libxml2.so.* rm,
+/usr/lib/i386-linux-gnu/libicu*.so.* rm,
+/usr/lib/i386-linux-gnu/libxkbcommon.so.* rm,
+/usr/lib/i386-linux-gnu/libfcitx-*so* rm,
+/lib/i386-linux-gnu/liblzma.so.* rm,
+
+/usr/lib/i386-linux-gnu/gio/modules/{,**} r,
+
+/usr/lib/i386-linux-gnu/libstdc++.so.* rm,
+/lib/i386-linux-gnu/libgcc_s.so.? rm,
+
+/lib/i386-linux-gnu/libsystemd.so.* rm,
+/lib/i386-linux-gnu/libdbus-?.so.* rm,
+/lib/i386-linux-gnu/libudev.so.* rm,
+/usr/lib/i386-linux-gnu/gvfs/libgvfscommon.so rm,
+
+/etc/fonts/{,**} r,
+/var/cache/fontconfig/{,**} r,
+/usr/{,local/}share/{fonts,fontconfig}/{,**} r,
+/usr/share/gnupg2/{,**} r,
+/usr/share/X11/locale/{,**} r,
+/usr/share/{icons,mime,pixmaps,poppler,themes}/{,**} r,
 
 }
